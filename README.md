@@ -1,21 +1,25 @@
-#  ***CardSim*** - UBC CPSC 210 term project
+#  ***UnoSim*** - UBC CPSC 210 term project
 
 ## What is this?
-This project will be a simulator for multiplayer card games. Users will be able to build a deck of cards using the
-standard 52 card set, then start a pass-and-play game with other players. During a game, players will be able to
-draw cards from a draw deck and play them from their hand.
+This project will be a simulator for the card game Uno.
+Users will be able to start a pass-and-play game with any number of players and any number of starting cards,
+then play using an infinite randomized deck.
 
 ## Why?
-I love playing card games like Hearts and Red King, but sometimes I don't have a deck to use or a place to put cards!
+I love playing Uno, but sometimes I don't have a deck to use or a place to put cards!
+Plenty of Uno simulators already exist to solve this problem, but they are all web-based and don't work offline.
 Hopefully, this project can be used as a substitute for a playing space when on a car, plane, or bus.
 I also want to gain experience designing programs that run games.
 
 ## User stories
-- As a user, I want to start a game with an arbitrary number of players and a shuffled deck.
-- As a user, I want to draw cards from a draw pile and add them to my hand.
-- As a user, I want to view the cards in my hand and play them into my play space or into a discard pile.
-- As a user, I want to pass the turn to the next player when I am done.
-- As a user, I want to end a game and start a new one.
+- As a user, I want to start a game with a given number of players and number of starting cards.
+- As a user, I want to be able to view the cards in my hand in sorted order.
+- As a user, I want to play a valid card onto the discard pile.
+- As a user, I want to draw a card if I don't have any valid cards to play.
+- As a user, I want the game to end when a player runs out of cards.
 
-## Stretch goals
-- Add custom cards beyond the 52 card set to a deck
+## Stretch goals (beyond minimum product)
+- Power cards: +2, +4, Wild, Skip, Reverse
+- Support 10 to 1: start with ten cards each and play games down to one card each
+- Choose infinite draw or single draw
+- Optional +2 and +4 stacking rule
