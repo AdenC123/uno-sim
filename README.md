@@ -2,7 +2,7 @@
 
 ## What is this?
 This project will be a simulator for multiplayer card games. Users will be able to build a deck of cards using the
-standard 54 card set, then start a pass-and-play game with other players. During a game, players will be able to
+standard 52 card set, then start a pass-and-play game with other players. During a game, players will be able to
 draw cards from a draw deck and play them from their hand.
 
 ## Why?
@@ -11,10 +11,11 @@ Hopefully, this project can be used as a substitute for a playing space when on 
 I also want to gain experience designing programs that run games.
 
 ## User stories
-- As a user, I want to add and remove cards from the playing deck.
 - As a user, I want to start a game with an arbitrary number of players and a shuffled deck.
 - As a user, I want to draw cards from a draw pile and add them to my hand.
 - As a user, I want to view the cards in my hand and play them into my play space or into a discard pile.
+- As a user, I want to pass the turn to the next player when I am done.
+- As a user, I want to end a game and start a new one.
 
 ## Stretch goals
-- Add custom cards beyond the 54 card set to a deck
+- Add custom cards beyond the 52 card set to a deck
