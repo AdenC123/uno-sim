@@ -15,7 +15,7 @@ I also want to gain experience designing programs that run games.
 - As a user, I want to start a game with a given number of players and number of starting cards.
 - As a user, I want to be able to view the cards in my hand in sorted order.
 - As a user, I want to play a valid card onto the discard pile.
-- As a user, I want to draw a card if I don't have any valid cards to play.
+- As a user, I want to add a card to my hand if I don't have any valid cards to play.
 - As a user, I want the game to end when a player runs out of cards.
 
 ## Stretch goals (beyond minimum product)
