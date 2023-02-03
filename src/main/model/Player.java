@@ -38,7 +38,7 @@ public class Player {
     // Requires: 0 <= index < handSize()
     // Modifies: this
     // Effects: removes the card at index from the player's hand and returns it
-    public Card playCard(int index) {
+    public Card removeCard(int index) {
         return null; //stub
     }
 
@@ -47,8 +47,8 @@ public class Player {
         return -1;
     }
 
-    // Effects: returns the contents of the player's hand in a readable format
-    public String printHand() {
+    // Effects: returns the contents of the player's hand in the format index:card
+    public String handToString() {
         return ""; //stub
     }
 }
