@@ -8,6 +8,7 @@ public class PowerCard extends Card {
         PLUS2, PLUS4, WILD, SKIP, REVERSE
     }
 
+    // Effects: constructs a power card with owner, color, and power
     public PowerCard(Player owner, Color color, Power power) {
         super(owner, color); //stub
     }

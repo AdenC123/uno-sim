@@ -2,7 +2,7 @@ package model.cards;
 
 import model.Player;
 
-// Represents one Uno card
+// An Uno card with a color and a player who owns it
 public abstract class Card {
 
     // Effects: constructs a card with owner and color
