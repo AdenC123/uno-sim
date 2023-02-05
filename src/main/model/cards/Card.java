@@ -24,7 +24,7 @@ public abstract class Card {
     }
 
     // Effects: returns true if this card can be played on the given card
-    public abstract boolean isValid(Card other);
+    public abstract boolean canPlayOn(Card other);
 
     // Effects: returns the card in string format
     @Override

@@ -11,8 +11,8 @@ public class PowerCard extends Card {
     }
 
     @Override
-    // Effects: returns true if color or power are same as other
-    public boolean isValid(Card other) {
+    // Effects: returns true if color or power are same as other TODO update
+    public boolean canPlayOn(Card other) {
         return false;
     }
 
@@ -21,5 +21,9 @@ public class PowerCard extends Card {
     //          or just <Power> for Wild and +4
     public String toString() {
         return null;
+    }
+
+    public Power getPower() {
+        return null; //stub
     }
 }
