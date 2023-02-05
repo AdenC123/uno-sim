@@ -1,5 +1,7 @@
 package model;
 
+import model.cards.Card;
+
 // The state of a game of Uno. Handles player turns and power card effects
 public class Game {
 
@@ -10,9 +12,26 @@ public class Game {
         //stub
     }
 
-    // Effects: returns the current player's id number
-    public int getPlayer() {
-        return -1; //stub
+    // Effects: returns the card on top of the discard pile
+    public Card getDiscard() {
+        return null; //stub
+    }
+
+    // Requires: 0 < id <= numPlayers
+    // Effects: gets the player with the given id
+    public Player getPlayer(int id) {
+        return null; //stub
+    }
+
+    // Effects: returns the current player
+    public Player getCurrentPlayer() {
+        return null; //stub
+    }
+
+    // Modifies: this
+    // Effects: passes the turn to the next player in order and returns them
+    public Player passTurn() {
+        return null; //stub
     }
 
     // Effects: returns the current player's hand in a readable format

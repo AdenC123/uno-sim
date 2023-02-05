@@ -101,6 +101,10 @@ class CardTest {
 
     @Test
     public void testCanPlayOnWild() {
+        assertTrue(wild.canPlayOn(bluePlus2));
+        assertTrue(wild.canPlayOn(yellow0));
+        assertTrue(wild.canPlayOn(plus4));
+
         assertFalse(bluePlus2.canPlayOn(wild));
         wild.setColor(Color.BLUE);
         assertTrue(bluePlus2.canPlayOn(wild));
