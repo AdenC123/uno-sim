@@ -12,7 +12,14 @@ public class NumberCard extends Card {
     }
 
     @Override
+    // Effects: returns true if color or number are the same as other
     public boolean isValid(Card other) {
         return false; //stub
+    }
+
+    @Override
+    // Effects: returns the card as a readable string, in the format <Color> <Number>
+    public String toString() {
+        return null; //stub
     }
 }

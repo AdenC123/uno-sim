@@ -19,20 +19,21 @@ public class Player {
 
     // Requires: num >= 0
     // Modifies: this
-    // Effects: adds num randomized cards to the proper sorted location in player's hand
+    // Effects: adds num randomized cards to the player's hand
     public void drawCards(int num) {
         //stub
     }
 
-    // Effects: returns a list of the player's cards TODO: maybe unnecessary
-    public List<Card> getHand() {
+    // Requires: 0 <= index < handSize()
+    // Effects: returns the card in the player's hand at index
+    public Card getCard(int index) {
         return null; //stub
     }
 
-    // Requires: 0 <= index < handSize()
-    // Effects: returns the card in the player's hand at index TODO: maybe unnecessary
-    public Card getCard(int index) {
-        return null; //stub
+    // Modifies: this
+    // Effects: adds the given card to the player's hand
+    public void drawGivenCard(Card card) {
+        //stub
     }
 
     // Requires: 0 <= index < handSize()
