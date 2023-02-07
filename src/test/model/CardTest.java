@@ -111,11 +111,14 @@ class CardTest {
     }
 
     @Test
-    public void testToString() {
+    public void testNumberCardToString() {
         assertEquals("Yellow 0", yellow0.toString());
         assertEquals("Green 9", green9.toString());
-        assertEquals("Red 4", green9.toString());
+        assertEquals("Red 4", red4.toString());
+    }
 
+    @Test
+    public void testPowerCardToString() {
         assertEquals("Blue +2", bluePlus2.toString());
         assertEquals("+4", plus4.toString());
         assertEquals("Wild", wild.toString());

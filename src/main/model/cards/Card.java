@@ -4,23 +4,26 @@ import model.Player;
 
 // An Uno card with a color and a player who owns it
 public abstract class Card {
+    private final Player owner;
+    private Color color;
 
     // Effects: constructs a card with owner and color
     public Card(Player owner, Color color) {
-        //stub
+        this.owner = owner;
+        this.color = color;
     }
 
     public Color getColor() {
-        return null; //stub
+        return color; //stub
     }
 
     public void setColor(Color color) {
-        //stub
+        this.color = color;
     }
 
     // Effects: returns the player who played this card or has it in their hand
     public Player getOwner() {
-        return null; //stub
+        return owner;
     }
 
     // Effects: returns true if this card can be played on the given card

@@ -4,11 +4,13 @@ import model.Player;
 
 // A normal card with a number face
 public class NumberCard extends Card {
+    private final int number;
 
     // Requires: number is 0 to 9
     // Effects: constructs a NumberCard with owner, number, and color
     public NumberCard(Player owner, Color color, int number) {
-        super(owner, color); //stub
+        super(owner, color);
+        this.number = number;
     }
 
     @Override
@@ -20,10 +22,10 @@ public class NumberCard extends Card {
     @Override
     // Effects: returns the card as a readable string, in the format <Color> <Number>
     public String toString() {
-        return null; //stub
+        return getColor().toString() + " " + number;
     }
 
     public int getNumber() {
-        return -1; //stub
+        return number;
     }
 }
