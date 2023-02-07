@@ -1,7 +1,5 @@
 package model.cards;
 
-import model.Player;
-
 // A normal card with a number face
 public class NumberCard implements Card {
     private Color color;
@@ -25,6 +23,7 @@ public class NumberCard implements Card {
     }
 
     @Override
+    // Effects: returns Face.NUMBER;
     public Face getFace() {
         return Face.NUMBER;
     }
@@ -35,7 +34,7 @@ public class NumberCard implements Card {
     }
 
     @Override
-    // Effects: returns true if color or number are the same as other
+    // Effects: returns true if this card can be played on the other card
     public boolean canPlayOn(Card other) {
         if (other.getFace() == Face.NUMBER) {
             // number card: need same color or same number

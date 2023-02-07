@@ -4,6 +4,7 @@ package model.cards;
 public enum Color {
     BLUE, RED, YELLOW, GREEN, WILD;
 
+    // Effects: return the color formatted as a string
     public String toString() {
         switch (this) {
             case BLUE: return "Blue";

@@ -46,9 +46,11 @@ class CardTest {
     public void testPowerCardConstructor() {
         assertEquals(Color.BLUE, bluePlus2.getColor());
         assertEquals(Face.PLUS2, bluePlus2.getFace());
+        assertEquals(-1, bluePlus2.getNumber());
 
         assertEquals(Color.WILD, plus4.getColor());
         assertEquals(Face.PLUS4, plus4.getFace());
+        assertEquals(-1, plus4.getNumber());
     }
 
     @Test
