@@ -3,11 +3,26 @@ package model.cards;
 import model.Player;
 
 // A special card that has effects when played
-public class PowerCard extends Card {
+public class PowerCard implements Card {
 
     // Effects: constructs a power card with owner, color, and power
-    public PowerCard(Player owner, Color color, Power power) {
-        super(owner, color); //stub
+    public PowerCard(Color color, Face power) {
+        //stub
+    }
+
+    @Override
+    public Color getColor() {
+        return null;
+    }
+
+    @Override
+    public void setColor(Color color) {
+
+    }
+
+    @Override
+    public Face getFace() {
+        return null;
     }
 
     @Override
@@ -21,9 +36,5 @@ public class PowerCard extends Card {
     //          or just <Power> for Wild and +4
     public String toString() {
         return null;
-    }
-
-    public Power getPower() {
-        return null; //stub
     }
 }
