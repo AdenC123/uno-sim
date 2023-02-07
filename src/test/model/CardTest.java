@@ -7,39 +7,31 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CardTest {
-    Player player1;
-    Player player2;
+    Card yellow0;
+    Card green9;
+    Card red4;
 
-    NumberCard yellow0;
-    NumberCard green9;
-    NumberCard red4;
-
-    PowerCard bluePlus2;
-    PowerCard plus4;
-    PowerCard wild;
-    PowerCard redSkip;
-    PowerCard greenReverse;
+    Card bluePlus2;
+    Card plus4;
+    Card wild;
+    Card redSkip;
+    Card greenReverse;
 
     @BeforeEach
     public void setup() {
-        player1 = new Player(1);
+        yellow0 = new NumberCard(Color.YELLOW, 0);
+        green9 = new NumberCard(Color.GREEN, 9);
+        red4 = new NumberCard(Color.RED, 4);
 
-        yellow0 = new NumberCard(player1, Color.YELLOW, 0);
-        green9 = new NumberCard(player2, Color.GREEN, 9);
-        red4 = new NumberCard(player1, Color.RED, 4);
-
-        bluePlus2 = new PowerCard(player1, Color.BLUE, Power.PLUS2);
-        plus4 = new PowerCard(player2, Color.WILD, Power.PLUS4);
-        wild = new PowerCard(player1, Color.WILD, Power.WILD);
-        redSkip = new PowerCard(player1, Color.RED, Power.SKIP);
-        greenReverse = new PowerCard(player1, Color.GREEN, Power.REVERSE);
+        bluePlus2 = new PowerCard(Color.BLUE, Face.PLUS2);
+        plus4 = new PowerCard(Color.WILD, Face.PLUS4);
+        wild = new PowerCard(Color.WILD, Face.WILD);
+        redSkip = new PowerCard(Color.RED, Face.SKIP);
+        greenReverse = new PowerCard(Color.GREEN, Face.REVERSE);
     }
 
     @Test
     public void testNumberCardConstructor() {
-        assertEquals(1, yellow0.getOwner().getId());
-        assertEquals(2, green9.getOwner().getId());
-
         assertEquals(Color.YELLOW, yellow0.getColor());
         assertEquals(0, yellow0.getNumber());
 
@@ -52,14 +44,11 @@ class CardTest {
 
     @Test
     public void testPowerCardConstructor() {
-        assertEquals(1, bluePlus2.getOwner().getId());
-        assertEquals(2, plus4.getOwner().getId());
-
         assertEquals(Color.BLUE, bluePlus2.getColor());
-        assertEquals(Power.PLUS2, bluePlus2.getPower());
+        assertEquals(Face.PLUS2, bluePlus2.getFace());
 
         assertEquals(Color.WILD, plus4.getColor());
-        assertEquals(Power.PLUS4, plus4.getPower());
+        assertEquals(Face.PLUS4, plus4.getFace());
     }
 
     @Test
@@ -70,8 +59,8 @@ class CardTest {
 
     @Test
     public void testNumberCardCanPlayOn() {
-        Card yellow5 = new NumberCard(player1, Color.YELLOW, 5);
-        Card red0 = new NumberCard(player1, Color.RED, 0);
+        Card yellow5 = new NumberCard(Color.YELLOW, 5);
+        Card red0 = new NumberCard(Color.RED, 0);
 
         assertFalse(yellow0.canPlayOn(green9));
         assertTrue(yellow0.canPlayOn(yellow5));
@@ -80,34 +69,40 @@ class CardTest {
 
     @Test
     public void testPowerCardCanPlayOn() {
-        Card redPlus2 = new PowerCard(player1, Color.RED, Power.PLUS2);
-        Card blueSkip = new PowerCard(player1, Color.BLUE, Power.SKIP);
+        Card redPlus2 = new PowerCard(Color.RED, Face.PLUS2);
+        Card blueSkip = new PowerCard(Color.BLUE, Face.SKIP);
 
         assertFalse(bluePlus2.canPlayOn(redSkip));
         assertTrue(bluePlus2.canPlayOn(redPlus2));
         assertTrue(bluePlus2.canPlayOn(blueSkip));
 
         assertTrue(plus4.canPlayOn(bluePlus2));
+        assertTrue(plus4.canPlayOn(redSkip));
         assertTrue(wild.canPlayOn(bluePlus2));
+        assertTrue(wild.canPlayOn(redSkip));
     }
 
     @Test
     public void testCanPlayOnBoth() {
         assertFalse(yellow0.canPlayOn(wild));
+
         assertFalse(green9.canPlayOn(bluePlus2));
-        assertTrue(red4.canPlayOn(redSkip));
+        assertTrue(green9.canPlayOn(greenReverse));
+
+        assertTrue(redSkip.canPlayOn(red4));
         assertTrue(greenReverse.canPlayOn(green9));
     }
 
     @Test
     public void testCanPlayOnWild() {
-        assertTrue(wild.canPlayOn(bluePlus2));
-        assertTrue(wild.canPlayOn(yellow0));
-        assertTrue(wild.canPlayOn(plus4));
+        assertTrue(wild.canPlayOn(redSkip));
+        assertTrue(wild.canPlayOn(red4));
 
-        assertFalse(bluePlus2.canPlayOn(wild));
-        wild.setColor(Color.BLUE);
-        assertTrue(bluePlus2.canPlayOn(wild));
+        assertFalse(red4.canPlayOn(wild));
+        assertFalse(redSkip.canPlayOn(wild));
+        wild.setColor(Color.RED);
+        assertTrue(red4.canPlayOn(wild));
+        assertTrue(redSkip.canPlayOn(wild));
     }
 
     @Test

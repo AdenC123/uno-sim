@@ -30,6 +30,11 @@ public class NumberCard implements Card {
     }
 
     @Override
+    public int getNumber() {
+        return number;
+    }
+
+    @Override
     // Effects: returns true if color or number are the same as other
     public boolean canPlayOn(Card other) {
         return false; //stub
@@ -39,9 +44,5 @@ public class NumberCard implements Card {
     // Effects: returns the card as a readable string, in the format <Color> <Number>
     public String toString() {
         return getColor().toString() + " " + number;
-    }
-
-    public int getNumber() {
-        return number;
     }
 }

@@ -26,6 +26,12 @@ public class PowerCard implements Card {
     }
 
     @Override
+    // Effects: returns -1 (power cards don't have numbers) TODO: is this the right way to do it?
+    public int getNumber() {
+        return -1;
+    }
+
+    @Override
     // Effects: returns true if color or power are same as other TODO update
     public boolean canPlayOn(Card other) {
         return false;

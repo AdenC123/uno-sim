@@ -10,6 +10,8 @@ public interface Card {
 
     Face getFace();
 
+    int getNumber();
+
     // Effects: returns true if this card can be played on the given card
     boolean canPlayOn(Card other);
 
