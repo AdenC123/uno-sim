@@ -1,7 +1,8 @@
 package model.cards;
 
+// All possible faces on an Uno card
 public enum Face {
-    NUMBER, PLUS2, PLUS4, WILD, SKIP, REVERSE;
+    PLUS2, PLUS4, WILD, SKIP, REVERSE, NUMBER;
 
     // Requires: this is not NUMBER
     // Effects: return the face formatted as a string

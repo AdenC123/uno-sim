@@ -86,6 +86,6 @@ public class PlayerTest {
         player1.drawGivenCard(wild);
         player1.drawGivenCard(blue5);
 
-        assertEquals("Blue 5, Wild, Blue 5", player1.handToString());
+        assertEquals("1:Blue 5, 2:Wild, 3:Blue 5", player1.handToString());
     }
 }
