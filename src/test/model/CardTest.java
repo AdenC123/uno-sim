@@ -62,9 +62,15 @@ class CardTest {
         Card yellow5 = new NumberCard(Color.YELLOW, 5);
         Card red0 = new NumberCard(Color.RED, 0);
 
+        assertTrue(green9.canPlayOn(green9));
+
         assertFalse(yellow0.canPlayOn(green9));
+        assertFalse(green9.canPlayOn(yellow0));
+
         assertTrue(yellow0.canPlayOn(yellow5));
-        assertTrue(yellow5.canPlayOn(red0));
+        assertTrue(yellow5.canPlayOn(yellow0));
+        assertTrue(red0.canPlayOn(yellow0));
+        assertTrue(yellow0.canPlayOn(red0));
     }
 
     @Test

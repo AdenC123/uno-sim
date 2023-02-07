@@ -37,7 +37,13 @@ public class NumberCard implements Card {
     @Override
     // Effects: returns true if color or number are the same as other
     public boolean canPlayOn(Card other) {
-        return false; //stub
+        if (other.getFace() == Face.NUMBER) {
+            // number card: need same color or same number
+            return other.getNumber() == this.getNumber() || other.getColor() == this.getColor();
+        } else {
+            // power card: colors must be equal
+            return other.getColor() == this.getColor();
+        }
     }
 
     @Override
