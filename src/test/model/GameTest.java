@@ -85,9 +85,9 @@ public class GameTest {
 
     @Test
     public void testPlayCard() {
-        Card blue4 = new NumberCard(player1, Color.BLUE, 4);
-        Card blue7 = new NumberCard(player2, Color.BLUE, 7);
-        Card yellow0 = new NumberCard(player1, Color.YELLOW, 0);
+        Card blue4 = new NumberCard(Color.BLUE, 4);
+        Card blue7 = new NumberCard(Color.BLUE, 7);
+        Card yellow0 = new NumberCard(Color.YELLOW, 0);
         player1.drawGivenCard(blue4);
         player2.drawGivenCard(blue7);
         player1.drawGivenCard(yellow0);
@@ -121,7 +121,7 @@ public class GameTest {
 
     @Test
     public void testPlus2() {
-        Card plus2 = new PowerCard(threePlayers1, Color.BLUE, Power.PLUS2);
+        Card plus2 = new PowerCard(Color.BLUE, Face.PLUS2);
         threePlayers1.drawGivenCard(plus2);
 
         assertTrue(threePlayers.canPlayCard(5));
@@ -134,7 +134,7 @@ public class GameTest {
 
     @Test
     public void testPlus4() {
-        Card plus4 = new PowerCard(threePlayers1, Color.WILD, Power.PLUS4);
+        Card plus4 = new PowerCard(Color.WILD, Face.PLUS4);
         threePlayers1.drawGivenCard(plus4);
         threePlayers.playCard(5);
 
@@ -144,7 +144,7 @@ public class GameTest {
 
     @Test
     public void testSkip() {
-        Card skip = new PowerCard(threePlayers1, Color.YELLOW, Power.SKIP);
+        Card skip = new PowerCard(Color.YELLOW, Face.SKIP);
         threePlayers1.drawGivenCard(skip);
         threePlayers.playCard(5);
 
@@ -153,7 +153,7 @@ public class GameTest {
 
     @Test
     public void testReverse() {
-        Card reverse = new PowerCard(threePlayers1, Color.YELLOW, Power.REVERSE);
+        Card reverse = new PowerCard(Color.YELLOW, Face.REVERSE);
         threePlayers1.drawGivenCard(reverse);
         threePlayers.playCard(5);
 
@@ -172,7 +172,7 @@ public class GameTest {
         Player gameOver1 = gameOverGame.getPlayer(1);
         Player gameOver2 = gameOverGame.getPlayer(2);
 
-        Card blue4 = new NumberCard(gameOver1, Color.BLUE, 4);
+        Card blue4 = new NumberCard(Color.BLUE, 4);
         gameOver1.drawGivenCard(blue4);
 
         assertFalse(gameOverGame.isOver());

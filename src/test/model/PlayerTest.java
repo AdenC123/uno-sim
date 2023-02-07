@@ -16,8 +16,8 @@ public class PlayerTest {
     public void setup() {
         player1 = new Player(1);
         player2 = new Player(2);
-        blue5 = new NumberCard(player1, Color.BLUE, 5);
-        wild = new PowerCard(player1, Color.WILD, Power.WILD);
+        blue5 = new NumberCard(Color.BLUE, 5);
+        wild = new PowerCard(Color.WILD, Face.WILD);
     }
 
     @Test
