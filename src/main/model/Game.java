@@ -1,6 +1,7 @@
 package model;
 
 import model.cards.Card;
+import model.cards.Color;
 
 // The state of a game of Uno. Handles player turns and power card effects
 public class Game {
@@ -58,6 +59,13 @@ public class Game {
     //          executes any special card effects, checks if the game is over,
     //          and passes the turn if it is not
     public String playCard(int index) {
+        return "";
+    }
+
+    // Requires: canPlayCard(index) is true
+    // Modifies: this
+    // Effects: plays the card and changes the color to given, returns the card at index
+    public String playWildCard(int index, Color color) {
         return "";
     }
 

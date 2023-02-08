@@ -133,11 +133,23 @@ public class GameTest {
     }
 
     @Test
+    public void testWild() {
+        Card wild = new PowerCard(Color.WILD, Face.WILD);
+        player1.drawGivenCard(wild);
+
+        assertTrue(game.canPlayCard(7));
+        String card = game.playWildCard(7, Color.BLUE);
+        assertEquals(Color.BLUE, wild.getColor());
+        assertEquals(Color.BLUE, game.getDiscard().getColor());
+    }
+
+    @Test
     public void testPlus4() {
         Card plus4 = new PowerCard(Color.WILD, Face.PLUS4);
         threePlayers1.drawGivenCard(plus4);
-        threePlayers.playCard(5);
+        threePlayers.playWildCard(5, Color.RED);
 
+        assertEquals(Color.RED, plus4.getColor());
         assertEquals(9, threePlayers2.handSize());
         assertEquals(3, threePlayers.getCurrentPlayer().getId());
     }
