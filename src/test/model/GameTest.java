@@ -39,6 +39,7 @@ public class GameTest {
         assertEquals(7, player2.handSize());
 
         assertEquals(5, threePlayers1.handSize());
+        assertEquals(5, threePlayers2.handSize());
     }
 
     @Test
@@ -71,7 +72,7 @@ public class GameTest {
 
         String card3 = game.drawCard();
         assertEquals(9, player1.handSize());
-        assertEquals(card3, player2.getCard(8).toString());
+        assertEquals(card3, player1.getCard(8).toString());
         assertEquals(2, game.getCurrentPlayer().getId());
     }
 
@@ -79,6 +80,7 @@ public class GameTest {
     public void testCanPlayCardNoDiscard() {
         assertFalse(game.canPlayCard(7));
         assertTrue(game.canPlayCard(6));
+        game.drawCard();
         game.drawCard();
         assertTrue(game.canPlayCard(7));
     }
@@ -88,9 +90,9 @@ public class GameTest {
         Card blue4 = new NumberCard(Color.BLUE, 4);
         Card blue7 = new NumberCard(Color.BLUE, 7);
         Card yellow0 = new NumberCard(Color.YELLOW, 0);
-        player1.drawGivenCard(blue4);
-        player2.drawGivenCard(blue7);
         player1.drawGivenCard(yellow0);
+        player2.drawGivenCard(blue7);
+        player1.drawGivenCard(blue4);
 
         // player 1 turn: play the blue 4
         assertEquals(1, game.getCurrentPlayer().getId());
@@ -138,7 +140,7 @@ public class GameTest {
         player1.drawGivenCard(wild);
 
         assertTrue(game.canPlayCard(7));
-        String card = game.playWildCard(7, Color.BLUE);
+        String card = game.playCard(7, Color.BLUE);
         assertEquals(Color.BLUE, wild.getColor());
         assertEquals(Color.BLUE, game.getDiscard().getColor());
     }
@@ -147,7 +149,7 @@ public class GameTest {
     public void testPlus4() {
         Card plus4 = new PowerCard(Color.WILD, Face.PLUS4);
         threePlayers1.drawGivenCard(plus4);
-        threePlayers.playWildCard(5, Color.RED);
+        threePlayers.playCard(5, Color.RED);
 
         assertEquals(Color.RED, plus4.getColor());
         assertEquals(9, threePlayers2.handSize());
@@ -182,7 +184,6 @@ public class GameTest {
     public void testGameOver() {
         Game gameOverGame = new Game(2, 0);
         Player gameOver1 = gameOverGame.getPlayer(1);
-        Player gameOver2 = gameOverGame.getPlayer(2);
 
         Card blue4 = new NumberCard(Color.BLUE, 4);
         gameOver1.drawGivenCard(blue4);
