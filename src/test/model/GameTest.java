@@ -195,4 +195,19 @@ public class GameTest {
         assertTrue(gameOverGame.isOver());
     }
 
+    @Test
+    public void testIsWild() {
+        Card blue4 = new NumberCard(Color.BLUE, 4);
+        Card wild = new PowerCard(Color.WILD, Face.WILD);
+        Card plus4 = new PowerCard(Color.WILD, Face.PLUS4);
+
+        player1.drawGivenCard(blue4);
+        player1.drawGivenCard(wild);
+        player1.drawGivenCard(plus4);
+
+        assertFalse(game.isWild(7));
+        assertTrue(game.isWild(8));
+        assertTrue(game.isWild(9));
+    }
+
 }

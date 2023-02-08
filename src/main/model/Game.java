@@ -156,11 +156,15 @@ public class Game {
         }
     }
 
-
-
     // Effects: returns true if the current player has won the game, returns false if
     //          the game is not over
     public boolean isOver() {
         return getCurrentPlayer().handSize() == 0;
+    }
+
+    // Requires: canPlayCard(index) is true
+    // Effects: returns whether the card at index is wild
+    public boolean isWild(int index) {
+        return getCurrentPlayer().getCard(index).getColor() == Color.WILD;
     }
 }
