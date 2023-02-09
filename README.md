@@ -12,7 +12,8 @@ Hopefully, this project can be used as a substitute for a playing space when on 
 I also want to gain experience designing programs that run games.
 
 ## User stories
-- As a user, I want to start a game with a given number of players and number of starting cards.
+- As a user, I want to start a game with a given number of players.
+- As a user, I want to add multiple starting cards to each player's hand.
 - As a user, I want to be able to view the cards in my hand.
 - As a user, I want to play a valid card onto the discard pile.
 - As a user, I want to add a card to my hand if I don't have any valid cards to play.
