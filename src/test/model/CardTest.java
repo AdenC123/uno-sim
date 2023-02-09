@@ -139,4 +139,11 @@ class CardTest {
         assertEquals("Blue +4", plus4.toString());
         assertEquals("Red Wild", wild.toString());
     }
+
+    @Test
+    // these should never happen according to requires, doing it for code coverage
+    public void testToStringNull() {
+        assertNull(Face.NUMBER.toString());
+        assertNull(Color.WILD.toString());
+    }
 }

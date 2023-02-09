@@ -10,7 +10,7 @@ public class Player {
     private final int id;
     private final List<Card> hand;
 
-    // TODO: should these be somewhere else?
+    // TODO: deck stuff should probably be in Game or its own class
     private static final double POWER_CHANCE = 0.3;
 
     // Requires: id > 0

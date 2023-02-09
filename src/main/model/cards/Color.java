@@ -4,8 +4,9 @@ package model.cards;
 public enum Color {
     BLUE, RED, YELLOW, GREEN, WILD;
 
-    // Requires: color is not WILD (use face instead)
+    // Requires: this is not WILD
     // Effects: return the color formatted as a string
+    @Override
     public String toString() {
         switch (this) {
             case BLUE: return "Blue";

@@ -6,6 +6,7 @@ public enum Face {
 
     // Requires: this is not NUMBER
     // Effects: return the face formatted as a string
+    @Override
     public String toString() {
         switch (this) {
             case PLUS2: return "+2";

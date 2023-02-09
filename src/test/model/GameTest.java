@@ -213,4 +213,11 @@ public class GameTest {
         assertTrue(game.isWild(9));
     }
 
+    @Test
+    // this should never happen according to requires
+    public void testGetPlayerNoPlayers() {
+        Game noPlayers = new Game(0, 0);
+        assertNull(noPlayers.getPlayer(1));
+    }
+
 }
