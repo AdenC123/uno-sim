@@ -2,13 +2,14 @@ package ui;
 
 import model.Game;
 import model.cards.Color;
-import model.cards.PowerCard;
 
 import java.util.Scanner;
 
 public class ConsoleUI {
-    Scanner scan;
-    Game game;
+    private static final int NUM_LINES_TO_CLEAR = 10;
+
+    private final Scanner scan;
+    private Game game;
 
     public ConsoleUI() {
         scan = new Scanner(System.in);
@@ -20,6 +21,7 @@ public class ConsoleUI {
         game = setupGame();
         boolean gameOver = false;
         while (!gameOver) {
+            clearConsole();
             startTurn();
             takeTurn();
             gameOver = checkGameOver();
@@ -39,6 +41,9 @@ public class ConsoleUI {
     // Effects: introduces player and prints their hand
     private void startTurn() {
         System.out.println("Player " + game.getCurrentPlayer().getId() + "'s turn");
+        if (game.getDiscard() != null) {
+            System.out.println("The current card is " + game.getDiscard());
+        }
         System.out.println(game.getHand());
     }
 
@@ -70,6 +75,8 @@ public class ConsoleUI {
         System.out.println("Playing " + output);
     }
 
+    // Requires: input is "blue", "yellow", "red", or "green"
+    // Effects: converts a string input by the player into a color
     private Color toColor(String input) {
         switch (input) {
             case "blue": return Color.BLUE;
@@ -87,6 +94,13 @@ public class ConsoleUI {
             return true;
         } else {
             return false;
+        }
+    }
+
+    // Effects: clears the console by printing a lot of newlines
+    private void clearConsole() {
+        for (int i = 0; i < NUM_LINES_TO_CLEAR; i++) {
+            System.out.println();
         }
     }
 }
