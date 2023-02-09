@@ -4,6 +4,7 @@ package model.cards;
 public enum Color {
     BLUE, RED, YELLOW, GREEN, WILD;
 
+    // Requires: color is not WILD (use face instead)
     // Effects: return the color formatted as a string
     public String toString() {
         switch (this) {
@@ -11,7 +12,6 @@ public enum Color {
             case RED: return "Red";
             case YELLOW: return "Yellow";
             case GREEN: return "Green";
-            case WILD: return "Wild";
         }
         return null;
     }

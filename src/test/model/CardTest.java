@@ -57,6 +57,8 @@ class CardTest {
     public void testSetColor() {
         plus4.setColor(Color.GREEN);
         assertEquals(Color.GREEN, plus4.getColor());
+        red4.setColor(Color.BLUE);
+        assertEquals(Color.BLUE, red4.getColor());
     }
 
     @Test
@@ -98,7 +100,7 @@ class CardTest {
         assertTrue(green9.canPlayOn(greenReverse));
 
         assertTrue(redSkip.canPlayOn(red4));
-        assertTrue(greenReverse.canPlayOn(green9));
+        assertFalse(redSkip.canPlayOn(green9));
     }
 
     @Test

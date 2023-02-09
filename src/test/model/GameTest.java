@@ -166,18 +166,21 @@ public class GameTest {
     }
 
     @Test
-    public void testReverse() {
-        Card reverse = new PowerCard(Color.YELLOW, Face.REVERSE);
-        threePlayers1.drawGivenCard(reverse);
-        threePlayers.playCard(5);
+    public void testReverseThreePlayers() {
+        Card reverse1 = new PowerCard(Color.YELLOW, Face.REVERSE);
+        Card reverse2 = new PowerCard(Color.YELLOW, Face.REVERSE);
+        threePlayers1.drawGivenCard(reverse1);
+        threePlayers1.drawGivenCard(reverse2);
+        threePlayers.playCard(6);
 
         assertEquals(3, threePlayers.getCurrentPlayer().getId());
         threePlayers.passTurn();
         assertEquals(2, threePlayers.getCurrentPlayer().getId());
         threePlayers.passTurn();
         assertEquals(1, threePlayers.getCurrentPlayer().getId());
-        threePlayers.passTurn();
-        assertEquals(3, threePlayers.getCurrentPlayer().getId());
+
+        threePlayers.playCard(5);
+        assertEquals(2, threePlayers.getCurrentPlayer().getId());
     }
 
     @Test

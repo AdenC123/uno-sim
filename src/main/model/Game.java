@@ -130,10 +130,8 @@ public class Game {
         discard = card;
 
         doPower(card);
+        passTurn();
 
-        if (!isOver()) {
-            passTurn();
-        }
         return card.toString();
     }
 
