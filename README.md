@@ -18,6 +18,8 @@ I also want to gain experience designing programs that run games.
 - As a user, I want to play a valid card onto the discard pile.
 - As a user, I want to add a card to my hand if I don't have any valid cards to play.
 - As a user, I want the game to end when a player runs out of cards.
+- As a user, I want to have the option to save the current game at the beginning of my turn.
+- As a user, I want to have the option to load an existing game instead of starting a new one.
 
 ## Stretch goals (beyond minimum product)
 - Power cards: +2, +4, Wild, Skip, Reverse
