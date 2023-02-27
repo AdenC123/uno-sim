@@ -95,7 +95,7 @@ public class Game {
     //          index can be played onto the current discard pile
     public boolean canPlayCard(int index) {
         Player p = getCurrentPlayer();
-        if (index >= p.handSize()) {
+        if (index >= p.handSize() || index < 0) {
             return false;
         } else if (discard == null) {
             return true;

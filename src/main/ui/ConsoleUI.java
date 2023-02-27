@@ -49,15 +49,19 @@ public class ConsoleUI {
 
     // Effects: gives player a choice of card to play, or draw
     private void takeTurn() {
-        int cardNum;
+        int cardNum = -1;
         // prompt until player draws or chooses a correct card
         do {
-            System.out.print("Choose a card to play by typing its number, or type \"draw\" to draw a card: ");
+            System.out.print("Choose a card to play by typing its number, "
+                    + "type \"draw\" to draw a card, or type \"save\" to save the game: ");
             String input = scan.nextLine();
             if (input.equalsIgnoreCase("draw")) {
                 String output = game.drawCard();
                 System.out.println("Drew a " + output);
                 return;
+            } else if (input.equalsIgnoreCase("save")) {
+                saveGame();
+                System.out.println("Saved!");
             } else {
                 cardNum = Integer.parseInt(input) - 1; // convert to 0 based
             }
@@ -65,14 +69,23 @@ public class ConsoleUI {
 
         String output;
         if (game.isWild(cardNum)) {
-            System.out.print("What color would you like to set this card? (blue, yellow, red, or green): ");
-            Color color = toColor(scan.nextLine().toLowerCase());
-            output = game.playCard(cardNum, color);
+            output = handleWild(cardNum);
         } else {
             output = game.playCard(cardNum);
         }
 
         System.out.println("Playing " + output);
+    }
+
+    // Effects: Allow the user to set the color of a wild card
+    private String handleWild(int cardNum) {
+        System.out.print("What color would you like to set this card? (blue, yellow, red, or green): ");
+        Color color = toColor(scan.nextLine().toLowerCase());
+        return game.playCard(cardNum, color);
+    }
+
+    // Effects: Save the game to a file //TODO
+    private void saveGame() {
     }
 
     // Requires: input is "blue", "yellow", "red", or "green"

@@ -214,6 +214,14 @@ public class GameTest {
     }
 
     @Test
+    public void testCanPlayInvalid() {
+        assertFalse(game.canPlayCard(-1));
+        assertFalse(game.canPlayCard(-5));
+        assertFalse(game.canPlayCard(8));
+        assertFalse(game.canPlayCard(10));
+    }
+
+    @Test
     // this should never happen according to requires
     public void testGetPlayerNoPlayers() {
         Game noPlayers = new Game(0, 0);
