@@ -1,0 +1,34 @@
+{
+  "discard": {
+    "face": "Number",
+    "color": "blue",
+    "number": 5
+  },
+  "currentPlayer": 2,
+  "reversed": true,
+  "players": [
+    {
+      "id": 1,
+      "hand": []
+    },
+    {
+      "id": 2,
+      "hand": [
+        {"face": "+2", "color": "Red"},
+        {"face": "+4", "color": "Wild"},
+        {"face": "Wild", "color": "Wild"},
+        {"face": "Skip", "color": "Yellow"},
+        {"face": "Reverse", "color": "Green"}
+      ]
+    },
+    {
+      "id": 3,
+      "hand": [
+        {"face": "Number", "color": "Yellow", "number": 0},
+        {"face": "Number", "color": "Red", "number": 3},
+        {"face": "Number", "color": "Green", "number": 9},
+        {"face": "Number", "color": "Blue", "number": 0}
+      ]
+    }
+  ]
+}

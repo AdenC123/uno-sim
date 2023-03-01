@@ -1,0 +1,15 @@
+{
+  "discard": null,
+  "currentPlayer": 1,
+  "reversed": false,
+  "players": [
+    {
+      "id": 1,
+      "hand": []
+    },
+    {
+      "id": 2,
+      "hand": []
+    }
+  ]
+}
