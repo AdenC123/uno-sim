@@ -10,7 +10,7 @@ import java.util.List;
 public class Game {
     List<Player> players;
     Card discard;
-    int currentPlayer; // this is an ID, not a array index
+    int currentPlayer; // this is an ID (starting at 1), not a array index
     boolean reversed;
 
     // Requires: numPlayers > 1, numStartingCards > 0
