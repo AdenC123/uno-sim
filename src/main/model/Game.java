@@ -145,6 +145,9 @@ public class Game {
         return card.toString();
     }
 
+    // Requires: card is a power card
+    // Modifies: this
+    // Effects: activates the ability of the power card
     private void doPower(Card card) {
         switch (card.getFace()) {
             case PLUS2:
