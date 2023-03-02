@@ -4,6 +4,9 @@ import model.cards.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTest {
@@ -40,6 +43,22 @@ public class GameTest {
 
         assertEquals(5, threePlayers1.handSize());
         assertEquals(5, threePlayers2.handSize());
+    }
+
+    @Test
+    public void testInProgressConstructor() {
+        List<Player> players = new ArrayList<>();
+        players.add(player1);
+        players.add(player2);
+        players.add(threePlayers3);
+        Card discard = new NumberCard(Color.BLUE, 4);
+        Game inProgressGame = new Game(players, discard, 3, true);
+
+        assertEquals(3, inProgressGame.getCurrentPlayer().getId());
+        assertEquals(5, inProgressGame.getCurrentPlayer().handSize());
+        inProgressGame.passTurn();
+        assertEquals(2, inProgressGame.getCurrentPlayer().getId());
+        assertEquals(7, inProgressGame.getCurrentPlayer().handSize());
     }
 
     @Test

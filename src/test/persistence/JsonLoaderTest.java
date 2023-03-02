@@ -71,8 +71,8 @@ public class JsonLoaderTest {
             assertEquals(2, player2.getId());
             assertEquals(5, player2.handSize());
             checkPowerCard(player2.getCard(0), Color.RED, Face.PLUS2);
-            checkPowerCard(player2.getCard(1), Color.WILD, Face.WILD);
-            checkPowerCard(player2.getCard(2), Color.WILD, Face.PLUS4);
+            checkPowerCard(player2.getCard(1), Color.WILD, Face.PLUS4);
+            checkPowerCard(player2.getCard(2), Color.WILD, Face.WILD);
             checkPowerCard(player2.getCard(3), Color.YELLOW, Face.SKIP);
             checkPowerCard(player2.getCard(4), Color.GREEN, Face.REVERSE);
 

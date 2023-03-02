@@ -4,6 +4,9 @@ import model.cards.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTest {
@@ -26,6 +29,17 @@ public class PlayerTest {
         assertEquals(2, player2.getId());
         assertEquals(0, player1.handSize());
         assertEquals(0, player2.handSize());
+    }
+
+    @Test
+    public void testInProgressConstructor() {
+        List<Card> hand = new ArrayList<>();
+        hand.add(blue5);
+        hand.add(wild);
+        Player player3 = new Player(3, hand);
+
+        assertEquals(3, player3.getId());
+        assertEquals(2, player3.handSize());
     }
 
     @Test

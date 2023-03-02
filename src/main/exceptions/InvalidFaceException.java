@@ -1,4 +1,5 @@
 package exceptions;
 
-public class InvalidFaceException extends Exception {
+// A card's face is wrong
+public class InvalidFaceException extends InvalidCardException {
 }

@@ -29,6 +29,16 @@ public class Game {
         }
     }
 
+    // Requires: players is not empty, currentPlayer's ID is in players
+    // Effects: Constructs a game in progess, with a list of players, discard card, current player, and
+    //          whether the turn order is reversed
+    public Game(List<Player> players, Card discard, int currentPlayer, boolean reversed) {
+        this.players = players;
+        this.discard = discard;
+        this.currentPlayer = currentPlayer;
+        this.reversed = reversed;
+    }
+
     // Effects: returns the card on top of the discard pile
     public Card getDiscard() {
         return discard;

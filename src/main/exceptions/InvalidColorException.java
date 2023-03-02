@@ -1,4 +1,5 @@
 package exceptions;
 
-public class InvalidColorException extends Exception{
+// A card's color is wrong
+public class InvalidColorException extends InvalidCardException{
 }

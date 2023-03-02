@@ -20,6 +20,13 @@ public class Player {
         this.hand = new ArrayList<>();
     }
 
+    // Requires: id > 0
+    // Effects: constructs a player with id and given hand of cards
+    public Player(int id, List<Card> hand) {
+        this.id = id;
+        this.hand = hand;
+    }
+
     public int getId() {
         return id;
     }
