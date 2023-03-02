@@ -26,6 +26,17 @@ public class JsonLoaderTest {
     }
 
     @Test
+    public void testLoaderBadFile() {
+        JsonLoader loader = new JsonLoader("./data/invalid_game_test.json");
+        try {
+            Game game = loader.load();
+            fail("Expected IOException");
+        } catch (IOException e) {
+            // pass
+        }
+    }
+
+    @Test
     public void testLoaderNoCards() {
         JsonLoader loader = new JsonLoader("./data/no_cards_test.json");
         try {

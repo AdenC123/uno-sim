@@ -1,0 +1,22 @@
+{
+  "discard": {
+    "face": "nah",
+    "color": "nope"
+  },
+  "currentPlayer": 1,
+  "reversed": false,
+  "players": [
+    {
+      "id": 1,
+      "hand": []
+    },
+    {
+      "id": 2,
+      "hand": []
+    },
+    {
+      "id": 3,
+      "hand": []
+    }
+  ]
+}
