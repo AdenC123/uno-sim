@@ -1,5 +1,8 @@
 {
-  "discard": null,
+  "discard": {
+    "face": "Wild",
+    "color": "Blue"
+  },
   "currentPlayer": 1,
   "reversed": false,
   "players": [
@@ -9,10 +12,6 @@
     },
     {
       "id": 2,
-      "hand": []
-    },
-    {
-      "id": 3,
       "hand": []
     }
   ]
