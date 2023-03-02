@@ -25,7 +25,7 @@ public class JsonWriterTest extends JsonTest {
     @Test
     public void testWriterNoCards() {
         String readFile = "./data/no_cards_test.json";
-        String writeFile = "./data/write_no_cards_test.json";
+        String writeFile = "./data/write_test_no_cards.json";
         Game game = readThenWriteThenRead(readFile, writeFile);
         checkNoCards(game);
     }
@@ -33,7 +33,7 @@ public class JsonWriterTest extends JsonTest {
     @Test
     public void testWriterWildDiscard() {
         String readFile = "./data/wild_discard_test.json";
-        String writeFile = "./data/write_wild_discard_test.json";
+        String writeFile = "./data/write_test_discard.json";
         Game game = readThenWriteThenRead(readFile, writeFile);
         checkWildDiscard(game);
     }
@@ -41,7 +41,7 @@ public class JsonWriterTest extends JsonTest {
     @Test
     public void testWriterFullGame() {
         String readFile = "./data/full_game_test.json";
-        String writeFile = "./data/write_full_game_test.json";
+        String writeFile = "./data/write_test_full_game.json";
         Game game = readThenWriteThenRead(readFile, writeFile);
         checkFullGame(game);
     }

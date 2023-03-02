@@ -2,12 +2,15 @@ package model;
 
 import model.cards.Card;
 import model.cards.Color;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // The state of a game of Uno. Handles player turns and power card effects
-public class Game {
+public class Game implements Writable {
     List<Player> players;
     Card discard;
     int currentPlayer; // this is an ID (starting at 1), not a array index
@@ -177,5 +180,31 @@ public class Game {
     // Effects: returns whether the card at index is wild
     public boolean isWild(int index) {
         return getCurrentPlayer().getCard(index).getColor() == Color.WILD;
+    }
+
+    // Effects: returns game as a JSON object
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("currentPlayer", getCurrentPlayer().getId());
+        json.put("reversed", reversed);
+        json.put("players", playersToJson());
+
+        if (discard == null) {
+            json.put("discard", JSONObject.NULL);
+        } else {
+            json.put("discard", discard.toJson());
+        }
+
+        return json;
+    }
+
+    // Effects: returns list of players as a JSON array
+    private JSONArray playersToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Player player : players) {
+            jsonArray.put(player.toJson());
+        }
+        return jsonArray;
     }
 }

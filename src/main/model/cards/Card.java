@@ -1,9 +1,11 @@
 package model.cards;
 
 import model.Player;
+import org.json.JSONObject;
+import persistence.Writable;
 
 // An Uno card with a color and a player who owns it
-public interface Card {
+public interface Card extends Writable {
     Color getColor();
 
     void setColor(Color color);

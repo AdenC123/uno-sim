@@ -1,7 +1,10 @@
 package model.cards;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // A normal card with a number face
-public class NumberCard implements Card {
+public class NumberCard implements Card, Writable {
     private Color color;
     private final int number;
 
@@ -49,5 +52,15 @@ public class NumberCard implements Card {
     // Effects: returns the card as a readable string, in the format <Color> <Number>
     public String toString() {
         return getColor().toString() + " " + number;
+    }
+
+    @Override
+    // Effects: returns the number card as a JSON object
+    public JSONObject toJson() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("face", Face.NUMBER.toString());
+        jsonObject.put("color", getColor().toString());
+        jsonObject.put("number", getNumber());
+        return jsonObject;
     }
 }

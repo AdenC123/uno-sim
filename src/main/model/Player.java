@@ -1,12 +1,15 @@
 package model;
 
 import model.cards.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // A player in the Uno game, with a hand of cards
-public class Player {
+public class Player implements Writable {
     private final int id;
     private final List<Card> hand;
 
@@ -104,5 +107,22 @@ public class Player {
         }
         // remove the extra comma and space
         return rsf.substring(0, rsf.length() - 2);
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", getId());
+        jsonObject.put("hand", handToJson());
+        return jsonObject;
+    }
+
+    // Effects: returns player's hand as a JSON array of card objects
+    private JSONArray handToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Card card : hand) {
+            jsonArray.put(card.toJson());
+        }
+        return jsonArray;
     }
 }

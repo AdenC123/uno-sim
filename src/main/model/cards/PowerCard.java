@@ -1,7 +1,10 @@
 package model.cards;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // A special card that has effects when played
-public class PowerCard implements Card {
+public class PowerCard implements Card, Writable {
     private Color color;
     private final Face power;
 
@@ -57,5 +60,14 @@ public class PowerCard implements Card {
         } else {
             return this.getColor().toString() + " " + this.getFace().toString();
         }
+    }
+
+    @Override
+    // Effects: returns the power card as a JSON object
+    public JSONObject toJson() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("face", getFace().toString());
+        jsonObject.put("color", getColor().toString());
+        return jsonObject;
     }
 }
