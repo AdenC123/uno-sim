@@ -1,3 +1,4 @@
 *.class
 workspace.xml
 data/write_test*
+data/save.json

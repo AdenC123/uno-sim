@@ -3,11 +3,15 @@ package ui;
 import exceptions.InvalidColorException;
 import model.Game;
 import model.cards.Color;
+import persistence.JsonLoader;
+import persistence.JsonWriter;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class ConsoleUI {
     private static final int NUM_LINES_TO_CLEAR = 10;
+    private static final String FILENAME = "./data/save.json";
 
     private final Scanner scan;
     private Game game;
@@ -32,11 +36,38 @@ public class ConsoleUI {
     // Effects: Creates a game with user-input players and starting cards.
     private Game setupGame() {
         System.out.println("Welcome to UNO!");
+        System.out.print("Would you like to load an existing game? (y/n): ");
+        do {
+            String input = scan.nextLine();
+            if (input.equalsIgnoreCase("y")) {
+                // try to load the game
+                System.out.println("Loading game from " + FILENAME);
+                try {
+                    return loadGame();
+                } catch (IOException e) {
+                    System.out.println("Error loading from file, please start new game");
+                    break;
+                }
+            } else if (input.equalsIgnoreCase("n")) {
+                // proceed normally
+                break;
+            } else {
+                // ask again
+                System.out.print("Please input y or n: ");
+            }
+        } while (true);
+
         System.out.print("Choose number of players: ");
         int numPlayers = Integer.parseInt(scan.nextLine());
         System.out.print("Choose number of starting cards: ");
         int numStartingCards = Integer.parseInt(scan.nextLine());
         return new Game(numPlayers, numStartingCards);
+    }
+
+    // Effects: loads the game from file and returns it
+    private Game loadGame() throws IOException {
+        JsonLoader loader = new JsonLoader(FILENAME);
+        return loader.load();
     }
 
     // Effects: introduces player and prints their hand
@@ -62,7 +93,6 @@ public class ConsoleUI {
                 return;
             } else if (input.equalsIgnoreCase("save")) {
                 saveGame();
-                System.out.println("Saved!");
             } else {
                 cardNum = Integer.parseInt(input) - 1; // convert to 0 based
             }
@@ -92,8 +122,15 @@ public class ConsoleUI {
         return game.playCard(cardNum, color);
     }
 
-    // Effects: Save the game to a file //TODO
+    // Effects: Save the game to a file
     private void saveGame() {
+        JsonWriter writer = new JsonWriter(FILENAME);
+        try {
+            writer.write(game);
+            System.out.println("Saved to file " + FILENAME);
+        } catch (IOException e) {
+            System.out.println("Error saving to file");
+        }
     }
 
     // Effects: returns whether game is over, prints a congratulation message if it iss
