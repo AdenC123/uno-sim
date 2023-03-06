@@ -2,35 +2,27 @@ package model.cards;
 
 import exceptions.InvalidFaceException;
 
+import java.util.HashMap;
+import java.util.Map;
+
 // All possible faces on an Uno card
 public enum Face {
     PLUS2, PLUS4, WILD, SKIP, REVERSE, NUMBER;
 
+    // weird way to do this, but jacoco hates switch statements on enums
+    private static final Map<Face, String> FACE_TO_STRING_MAP = new HashMap<>() {{
+            put(PLUS2, "+2");
+            put(PLUS4, "+4");
+            put(WILD, "Wild");
+            put(SKIP, "Skip");
+            put(REVERSE, "Reverse");
+            put(NUMBER, "Number");
+        }};
+
     // Effects: return the face formatted as a string
     @Override
     public String toString() {
-        String result = null;
-        switch (this) {
-            case PLUS2:
-                result = "+2";
-                break;
-            case PLUS4:
-                result = "+4";
-                break;
-            case WILD:
-                result = "Wild";
-                break;
-            case SKIP:
-                result = "Skip";
-                break;
-            case REVERSE:
-                result = "Reverse";
-                break;
-            case NUMBER:
-                result = "Number";
-                break;
-        }
-        return result;
+        return FACE_TO_STRING_MAP.get(this);
     }
 
     // Effects: produces the face from given string,

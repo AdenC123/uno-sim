@@ -2,32 +2,26 @@ package model.cards;
 
 import exceptions.InvalidColorException;
 
+import java.util.HashMap;
+import java.util.Map;
+
 // The four Uno card colors, plus a placeholder for +4 and Wild cards
 public enum Color {
     BLUE, RED, YELLOW, GREEN, WILD;
 
+    // weird way to do this, but jacoco hates switch statements on enums
+    private static final Map<Color, String> COLOR_TO_STRING_MAP = new HashMap<>() {{
+            put(BLUE, "Blue");
+            put(RED, "Red");
+            put(YELLOW, "Yellow");
+            put(GREEN, "Green");
+            put(WILD, "Wild");
+        }};
+
     // Effects: return the color formatted as a string
     @Override
     public String toString() {
-        String result = null;
-        switch (this) {
-            case BLUE:
-                result = "Blue";
-                break;
-            case RED:
-                result = "Red";
-                break;
-            case YELLOW:
-                result =  "Yellow";
-                break;
-            case GREEN:
-                result = "Green";
-                break;
-            case WILD:
-                result = "Wild";
-                break;
-        }
-        return result;
+        return COLOR_TO_STRING_MAP.get(this);
     }
 
     // Effects: produces the color from given string,
