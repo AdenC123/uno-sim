@@ -1,7 +1,5 @@
 package model.cards;
 
-import model.Player;
-import org.json.JSONObject;
 import persistence.Writable;
 
 // An Uno card with a color and a player who owns it

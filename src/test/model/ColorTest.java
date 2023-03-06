@@ -1,6 +1,5 @@
 package model;
 
-import com.sun.jdi.IntegerValue;
 import exceptions.InvalidColorException;
 import model.cards.Color;
 import org.junit.jupiter.api.Test;

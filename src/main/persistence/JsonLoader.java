@@ -1,12 +1,10 @@
 package persistence;
 
 import exceptions.InvalidCardException;
-import exceptions.InvalidFaceException;
 import model.Game;
 import model.Player;
 import model.cards.*;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;

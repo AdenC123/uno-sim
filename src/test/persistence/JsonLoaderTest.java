@@ -1,10 +1,6 @@
 package persistence;
 
 import model.Game;
-import model.Player;
-import model.cards.Card;
-import model.cards.Color;
-import model.cards.Face;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
