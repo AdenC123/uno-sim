@@ -9,20 +9,18 @@ import java.util.Map;
 public enum Face {
     PLUS2, PLUS4, WILD, SKIP, REVERSE, NUMBER;
 
-    // weird way to do this, but jacoco hates switch statements on enums
-    private static final Map<Face, String> FACE_TO_STRING_MAP = new HashMap<Face, String>() {{
-            put(PLUS2, "+2");
-            put(PLUS4, "+4");
-            put(WILD, "Wild");
-            put(SKIP, "Skip");
-            put(REVERSE, "Reverse");
-            put(NUMBER, "Number");
-        }};
-
     // Effects: return the face formatted as a string
     @Override
     public String toString() {
-        return FACE_TO_STRING_MAP.get(this);
+        // weird way to do this, but jacoco hates switch statements on enums
+        Map<Face, String> map = new HashMap<>();
+        map.put(PLUS2, "+2");
+        map.put(PLUS4, "+4");
+        map.put(WILD, "Wild");
+        map.put(SKIP, "Skip");
+        map.put(REVERSE, "Reverse");
+        map.put(NUMBER, "Number");
+        return map.get(this);
     }
 
     // Effects: produces the face from given string,

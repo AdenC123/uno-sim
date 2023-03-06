@@ -9,19 +9,17 @@ import java.util.Map;
 public enum Color {
     BLUE, RED, YELLOW, GREEN, WILD;
 
-    // weird way to do this, but jacoco hates switch statements on enums
-    private static final Map<Color, String> COLOR_TO_STRING_MAP = new HashMap<Color, String>() {{
-            put(BLUE, "Blue");
-            put(RED, "Red");
-            put(YELLOW, "Yellow");
-            put(GREEN, "Green");
-            put(WILD, "Wild");
-        }};
-
     // Effects: return the color formatted as a string
     @Override
     public String toString() {
-        return COLOR_TO_STRING_MAP.get(this);
+        // weird way to do this, but jacoco hates switch statements on enums
+        Map<Color, String> map = new HashMap<>();
+        map.put(BLUE, "Blue");
+        map.put(RED, "Red");
+        map.put(YELLOW, "Yellow");
+        map.put(GREEN, "Green");
+        map.put(WILD, "Wild");
+        return map.get(this);
     }
 
     // Effects: produces the color from given string,
