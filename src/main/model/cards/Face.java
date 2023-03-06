@@ -10,7 +10,7 @@ public enum Face {
     PLUS2, PLUS4, WILD, SKIP, REVERSE, NUMBER;
 
     // weird way to do this, but jacoco hates switch statements on enums
-    private static final Map<Face, String> FACE_TO_STRING_MAP = new HashMap<>() {{
+    private static final Map<Face, String> FACE_TO_STRING_MAP = new HashMap<Face, String>() {{
             put(PLUS2, "+2");
             put(PLUS4, "+4");
             put(WILD, "Wild");

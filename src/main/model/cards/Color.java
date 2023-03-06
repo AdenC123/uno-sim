@@ -10,7 +10,7 @@ public enum Color {
     BLUE, RED, YELLOW, GREEN, WILD;
 
     // weird way to do this, but jacoco hates switch statements on enums
-    private static final Map<Color, String> COLOR_TO_STRING_MAP = new HashMap<>() {{
+    private static final Map<Color, String> COLOR_TO_STRING_MAP = new HashMap<Color, String>() {{
             put(BLUE, "Blue");
             put(RED, "Red");
             put(YELLOW, "Yellow");
