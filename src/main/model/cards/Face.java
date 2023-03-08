@@ -7,34 +7,40 @@ import java.util.Map;
 
 // All possible faces on an Uno card
 public enum Face {
-    PLUS2, PLUS4, WILD, SKIP, REVERSE, NUMBER;
+    PLUS2("+2"),
+    PLUS4("+4"),
+    WILD("Wild"),
+    SKIP("Skip"),
+    REVERSE("Reverse"),
+    NUMBER("Number");
+
+    private final String asString;
+    private static final Map<String, Face> STRING_FACE_MAP = new HashMap<>();
+    // setup STRING_FACE_MAP with all values
+    static {
+        for (Face face : Face.values()) {
+            String s = face.asString.toLowerCase();
+            STRING_FACE_MAP.put(s, face);
+        }
+    }
+
+    Face(String asString) {
+        this.asString = asString;
+    }
 
     // Effects: return the face formatted as a string
     @Override
     public String toString() {
-        // weird way to do this, but jacoco hates switch statements on enums
-        Map<Face, String> map = new HashMap<>();
-        map.put(PLUS2, "+2");
-        map.put(PLUS4, "+4");
-        map.put(WILD, "Wild");
-        map.put(SKIP, "Skip");
-        map.put(REVERSE, "Reverse");
-        map.put(NUMBER, "Number");
-        return map.get(this);
+        return this.asString;
     }
 
     // Effects: produces the face from given string,
     //          throws InvalidFaceException if s is not a valid face
     public static Face fromString(String s) throws InvalidFaceException {
         s = s.toLowerCase();
-        switch (s) {
-            case "+2": return PLUS2;
-            case "+4": return PLUS4;
-            case "wild": return WILD;
-            case "skip": return SKIP;
-            case "reverse": return REVERSE;
-            case "number": return NUMBER;
+        if (!STRING_FACE_MAP.containsKey(s)) {
+            throw new InvalidFaceException();
         }
-        throw new InvalidFaceException();
+        return STRING_FACE_MAP.get(s);
     }
 }
