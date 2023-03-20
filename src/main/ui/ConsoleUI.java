@@ -18,6 +18,7 @@ public class ConsoleUI {
 
     public ConsoleUI() {
         scan = new Scanner(System.in);
+        run();
     }
 
     // Modifies: this
@@ -148,5 +149,10 @@ public class ConsoleUI {
         for (int i = 0; i < NUM_LINES_TO_CLEAR; i++) {
             System.out.println();
         }
+    }
+
+    // Effects: run the console UI
+    public static void main(String[] args) {
+        new ConsoleUI();
     }
 }
