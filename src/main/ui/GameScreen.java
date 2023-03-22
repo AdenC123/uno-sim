@@ -14,23 +14,23 @@ public class GameScreen extends JPanel {
     private JMenuItem load;
     private JMenuItem restart;
 
+    private JLabel turnLabel;
+
     // Effects: constructs the game screen to display the given game
     public GameScreen(Game game, UnoUI mainFrame) {
         this.game = game;
         this.mainFrame = mainFrame;
 
-        JMenuBar menuBar = createMenuBar();
-
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        mainFrame.setJMenuBar(menuBar);
-        mainFrame.revalidate();
-//        add(createTurnLabel());
+        addMenuBar();
+        add(createTurnPanel());
 //        add(createDeckPanel());
 //        add(Box.createVerticalStrut(50));
 //        add(createCardsPanel());
     }
 
-    private JMenuBar createMenuBar() {
+    // Modifies: this, mainFrame
+    // Effects: adds the menu bar to the main frame
+    private void addMenuBar() {
         MenuListener menuListener = new MenuListener();
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("Menu");
@@ -46,11 +46,24 @@ public class GameScreen extends JPanel {
         menu.add(restart);
         menuBar.add(menu);
 
-        return menuBar;
+        mainFrame.setJMenuBar(menuBar);
+        mainFrame.revalidate();
     }
 
-    private JLabel createTurnLabel() {
-        return null; //TODO
+    // Effects: creates the panel that stores the turn label
+    private JPanel createTurnPanel() {
+        JPanel turnPanel = new JPanel();
+        turnLabel = new JLabel();
+        // TODO resize turn label
+        turnPanel.add(turnLabel);
+        updateTurnLabel();
+        return turnPanel;
+    }
+
+    // Effects: sets the turnLabel to the current player
+    private void updateTurnLabel() {
+        String currentPlayer = String.valueOf(game.getCurrentPlayer().getId());
+        turnLabel.setText("Player " + currentPlayer + "'s turn");
     }
 
     private JPanel createDeckPanel() {
