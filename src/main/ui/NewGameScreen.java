@@ -66,6 +66,7 @@ public class NewGameScreen extends JPanel {
         return cardsChooser;
     }
 
+    // Effects: creates the button to start the game
     private JButton createStartButton() {
         JButton startButton = new JButton("Start!");
         startButton.addActionListener(new StartAction());
@@ -80,7 +81,6 @@ public class NewGameScreen extends JPanel {
     }
 
     private class StartAction implements ActionListener {
-
         // Effects: give the main UI a new game to start
         @Override
         public void actionPerformed(ActionEvent e) {
