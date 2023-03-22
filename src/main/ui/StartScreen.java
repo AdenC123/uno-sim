@@ -1,33 +1,33 @@
 package ui;
 
+import model.Game;
+import persistence.JsonLoader;
+
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
-public class StartScreen extends JFrame {
-    private static final int WIDTH = 800;
-    private static final int HEIGHT = 600;
+// The first screen shown to the user, with start and load game buttons
+public class StartScreen extends JPanel {
+    private final UnoUI mainUI;
+    private static final String SAVE_FILE = "./data/save.json";
+    private static final String UNO_IMAGE_FILE = "./images/uno_logo.png";
 
-    // Effects: constructs the initial start screen window
-    public StartScreen() {
-        setTitle("Welcome to Uno");
-        setSize(WIDTH, HEIGHT);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        centerOnScreen();
-        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+    // Effects: constructs the start screen panel with logo and buttons
+    public StartScreen(UnoUI mainUI) {
+        this.mainUI = mainUI;
 
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(Box.createVerticalStrut(70));
         add(createUnoLogo());
         add(Box.createVerticalStrut(70));
         add(createStartButtons());
-
-        setVisible(true);
     }
 
     // Effects: Returns a JLabel with the UNO logo (don't sue me)
     private JLabel createUnoLogo() {
-        ImageIcon unoLogo = new ImageIcon("./images/uno_logo.png");
+        ImageIcon unoLogo = new ImageIcon(UNO_IMAGE_FILE);
         return new JLabel(unoLogo);
     }
 
@@ -43,29 +43,30 @@ public class StartScreen extends JFrame {
         return buttonPanel;
     }
 
-    // Effects: centers the main application window in the desktop
-    // from AlarmSystem project
-    private void centerOnScreen() {
-        int width = Toolkit.getDefaultToolkit().getScreenSize().width;
-        int height = Toolkit.getDefaultToolkit().getScreenSize().height;
-        setLocation((width - getWidth()) / 2, (height - getHeight()) / 2);
-    }
-
     private class StartGameAction implements ActionListener {
-
+        // Effects: tell the main UI to start the game
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("start game");
+            mainUI.newGame();
         }
     }
 
     private class LoadGameAction implements ActionListener {
-
+        // Effects: tell the main UI to load the existing game
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("load game");
+            try {
+                mainUI.startGame(loadGame());
+            } catch (IOException ex) {
+                // uh oh
+                System.out.println("Invalid game file");
+            }
+        }
+
+        // Effects: load and return the game from file
+        private Game loadGame() throws IOException {
+            JsonLoader loader = new JsonLoader(SAVE_FILE);
+            return loader.load();
         }
     }
-
-
 }
