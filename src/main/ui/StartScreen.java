@@ -11,7 +11,6 @@ import java.io.IOException;
 // The first screen shown to the user, with start and load game buttons
 public class StartScreen extends JPanel {
     private final UnoUI mainUI;
-    private static final String SAVE_FILE = "./data/save.json";
     private static final String UNO_IMAGE_FILE = "./images/uno_logo.png";
 
     // Effects: constructs the start screen panel with logo and buttons
@@ -65,7 +64,7 @@ public class StartScreen extends JPanel {
 
         // Effects: load and return the game from file
         private Game loadGame() throws IOException {
-            JsonLoader loader = new JsonLoader(SAVE_FILE);
+            JsonLoader loader = new JsonLoader(UnoUI.SAVE_FILE);
             return loader.load();
         }
     }

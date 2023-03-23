@@ -9,6 +9,7 @@ import java.awt.*;
 public class UnoUI extends JFrame {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
+    public static final String SAVE_FILE = "./data/save.json";
 
     // Effects: starts the UI at the start screen
     public UnoUI() {
