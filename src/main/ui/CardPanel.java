@@ -15,7 +15,6 @@ public class CardPanel extends JPanel {
     public CardPanel(Card card) {
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createLineBorder(Color.black));
-        setPreferredSize(CARD_SIZE);
 
         cardLabel = new JLabel();
         add(cardLabel, BorderLayout.CENTER);
@@ -31,5 +30,11 @@ public class CardPanel extends JPanel {
         } else {
             cardLabel.setText(card.toString());
         }
+    }
+
+    // Effects: return the preferred size of the CardPanel
+    @Override
+    public Dimension getPreferredSize() {
+        return CARD_SIZE;
     }
 }
