@@ -27,3 +27,11 @@ I also want to gain experience designing programs that run games.
 - Support 10 to 1: start with ten cards each and play games down to one card each
 - Choose infinite draw or single draw
 - Optional +2 and +4 stacking rule
+
+## Instructions for grader
+- My visual component is the Uno logo on the first screen, as well as the cards in the main game.
+- You can generate the first action by pressing "Start Game", then choosing any number of players
+and any number of cards to add to their hands.
+- You can generate the second action by clicking on the deck to draw a card, or clicking on a valid card to play it.
+- You can save the state of the application using the menu in the top left of the game screen.
+- You can load the state of the application using the menu or the "Load Game" button on the first screen.
