@@ -1,12 +1,8 @@
 package ui;
 
-import model.Game;
-import persistence.JsonLoader;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 // The first screen shown to the user, with start and load game buttons
 public class StartScreen extends JPanel {
@@ -51,21 +47,10 @@ public class StartScreen extends JPanel {
     }
 
     private class LoadGameAction implements ActionListener {
-        // Effects: tell the main UI to load the existing game
+        // Effects: tell the main UI to load tne existing game
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {
-                mainUI.startGame(loadGame());
-            } catch (IOException ex) {
-                // uh oh
-                System.out.println("Invalid game file");
-            }
-        }
-
-        // Effects: load and return the game from file
-        private Game loadGame() throws IOException {
-            JsonLoader loader = new JsonLoader(UnoUI.SAVE_FILE);
-            return loader.load();
+            mainUI.loadGame();
         }
     }
 }

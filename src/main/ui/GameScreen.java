@@ -30,7 +30,6 @@ public class GameScreen extends JPanel {
     private JLabel turnLabel;
     private CardPanel discardPanel;
 
-    private JPanel cardsPanel;
     private List<CardPanel> cardPanels;
     private JScrollPane cardsPane;
 
@@ -115,7 +114,7 @@ public class GameScreen extends JPanel {
 
     // Effects: creates the panel to display the cards in the current player's hand
     private JScrollPane createCardsPane() {
-        cardsPanel = new JPanel();
+        JPanel cardsPanel = new JPanel();
         cardsPanel.setBorder(BorderFactory.createLineBorder(Color.pink));
 
         cardsPane = new JScrollPane(cardsPanel);
@@ -142,26 +141,9 @@ public class GameScreen extends JPanel {
         add(cardsPane);
     }
 
-    // Effects: updates the cards pane with the current player's cards
-//    private void updateCardsPanel() {
-//        cardsPanel.removeAll();
-//        Player currentPlayer = game.getCurrentPlayer();
-//        cardPanels = new ArrayList<>();
-//        PlayListener playListener = new PlayListener();
-//
-//        for (int i = 0; i < currentPlayer.handSize(); i++) {
-//            CardPanel cardPanel = new CardPanel(currentPlayer.getCard(i));
-//            cardPanel.addMouseListener(playListener);
-//            cardPanels.add(cardPanel);
-//            cardsPanel.add(cardPanel);
-//        }
-//
-//        cardsPane.revalidate();
-//    }
-
     // Effects: load the game from file and reset the view
     private void loadGame() {
-        System.out.println("Loading game!"); // TODO
+        mainFrame.loadGame();
     }
 
     // Effects: save the game to file
@@ -178,7 +160,6 @@ public class GameScreen extends JPanel {
     // Effects: updates every element of the game screen
     private void updateAll() {
         updateTurnLabel();
-//        updateCardsPanel();
         updateCardsPane();
         updateDiscardPanel();
         revalidate();

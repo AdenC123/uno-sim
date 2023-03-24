@@ -1,9 +1,11 @@
 package ui;
 
 import model.Game;
+import persistence.JsonLoader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 // The main UI class, which handles the main frame and transitions between screens
 public class UnoUI extends JFrame {
@@ -42,6 +44,22 @@ public class UnoUI extends JFrame {
     // Effects: transition to the main game screen with the given game
     public void startGame(Game game) {
         setScreen(new GameScreen(game, this));
+    }
+
+    // Effects: load the game screen with the game from file,
+    //          or do nothing if game is invalid
+    public void loadGame() {
+        JsonLoader loader = new JsonLoader(SAVE_FILE);
+        Game game = null;
+        try {
+            game = loader.load();
+        } catch (IOException e) {
+            System.out.println("Invalid game file");
+        }
+
+        if (game != null) {
+            startGame(game);
+        }
     }
 
     // Effects: removes the current screen and changes it to the given one
