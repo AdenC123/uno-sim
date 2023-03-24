@@ -18,7 +18,6 @@ import java.util.List;
 public class GameScreen extends JPanel {
     private static final ImageIcon CARD_BACK_IMAGE = new ImageIcon("./images/uno_card_back.png");
 
-//    public static final int CARDS_SPACING = 10;
     public static final int DECK_DISCARD_SPACING = 20;
 
     private final Game game;
@@ -33,6 +32,7 @@ public class GameScreen extends JPanel {
 
     private JPanel cardsPanel;
     private List<CardPanel> cardPanels;
+    private JScrollPane cardsPane;
 
     // Effects: constructs the game screen to display the given game
     public GameScreen(Game game, UnoUI mainFrame) {
@@ -48,7 +48,6 @@ public class GameScreen extends JPanel {
         add(createDeckPanel());
         add(Box.createVerticalStrut(50));
         add(createCardsPane());
-//        revalidate();
     }
 
     // Modifies: this, mainFrame
@@ -70,7 +69,6 @@ public class GameScreen extends JPanel {
         menuBar.add(menu);
 
         mainFrame.setJMenuBar(menuBar);
-        mainFrame.revalidate();
     }
 
     // Effects: creates the panel that stores the turn label
@@ -96,7 +94,6 @@ public class GameScreen extends JPanel {
     // Effects: creates the panel with the draw deck and discard pile
     private JPanel createDeckPanel() {
         JPanel deckPanel = new JPanel();
-//        deckPanel.setLayout(new BoxLayout(deckPanel, BoxLayout.X_AXIS));
         deckPanel.setLayout(new FlowLayout(FlowLayout.CENTER, DECK_DISCARD_SPACING, 0));
         deckPanel.setBorder(BorderFactory.createLineBorder(Color.CYAN));
 
@@ -106,7 +103,6 @@ public class GameScreen extends JPanel {
         discardPanel = new CardPanel(game.getDiscard());
 
         deckPanel.add(deckLabel);
-//        deckPanel.add(Box.createHorizontalStrut(DECK_DISCARD_SPACING));
         deckPanel.add(discardPanel);
         return deckPanel;
     }
@@ -114,24 +110,19 @@ public class GameScreen extends JPanel {
     // Effects: set the discard panel to the current discard
     private void updateDiscardPanel() {
         discardPanel.setCard(game.getDiscard());
+        discardPanel.revalidate();
     }
 
     // Effects: creates the panel to display the cards in the current player's hand
     private JScrollPane createCardsPane() {
         cardsPanel = new JPanel();
         cardsPanel.setBorder(BorderFactory.createLineBorder(Color.pink));
-        updateCardsPanel();
 
-        JScrollPane cardsPane = new JScrollPane(cardsPanel);
-        cardsPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        cardsPane = new JScrollPane(cardsPanel);
+        cardsPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         cardsPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
         cardsPane.setBorder(BorderFactory.createLineBorder(Color.GREEN));
-        return cardsPane;
-    }
 
-    // Effects: updates the cards panel with the current player's cards
-    private void updateCardsPanel() {
-        cardsPanel.removeAll();
         Player currentPlayer = game.getCurrentPlayer();
         cardPanels = new ArrayList<>();
         PlayListener playListener = new PlayListener();
@@ -141,11 +132,32 @@ public class GameScreen extends JPanel {
             cardPanel.addMouseListener(playListener);
             cardPanels.add(cardPanel);
             cardsPanel.add(cardPanel);
-//            cardsPane.add(Box.createHorizontalStrut(CARDS_SPACING));
         }
-
-        cardsPanel.revalidate();
+        return cardsPane;
     }
+
+    private void updateCardsPane() {
+        remove(cardsPane);
+        cardsPane = createCardsPane();
+        add(cardsPane);
+    }
+
+    // Effects: updates the cards pane with the current player's cards
+//    private void updateCardsPanel() {
+//        cardsPanel.removeAll();
+//        Player currentPlayer = game.getCurrentPlayer();
+//        cardPanels = new ArrayList<>();
+//        PlayListener playListener = new PlayListener();
+//
+//        for (int i = 0; i < currentPlayer.handSize(); i++) {
+//            CardPanel cardPanel = new CardPanel(currentPlayer.getCard(i));
+//            cardPanel.addMouseListener(playListener);
+//            cardPanels.add(cardPanel);
+//            cardsPanel.add(cardPanel);
+//        }
+//
+//        cardsPane.revalidate();
+//    }
 
     // Effects: load the game from file and reset the view
     private void loadGame() {
@@ -161,6 +173,16 @@ public class GameScreen extends JPanel {
         } catch (IOException e) {
             System.out.println("Error saving to file");
         }
+    }
+
+    // Effects: updates every element of the game screen
+    private void updateAll() {
+        updateTurnLabel();
+//        updateCardsPanel();
+        updateCardsPane();
+        updateDiscardPanel();
+        revalidate();
+        repaint();
     }
 
     // Listener for menu items
@@ -183,12 +205,13 @@ public class GameScreen extends JPanel {
     private class DrawListener implements MouseListener {
         // Effects: draws a card for the current player
         @Override
-        public void mouseClicked(MouseEvent e) {
-            System.out.println("Deck clicked"); // TODO
+        public void mousePressed(MouseEvent e) {
+            game.drawCard();
+            updateAll();
         }
 
         @Override
-        public void mousePressed(MouseEvent e) {
+        public void mouseClicked(MouseEvent e) {
 
         }
 
@@ -212,14 +235,18 @@ public class GameScreen extends JPanel {
 
         // Effects: play the card clicked on
         @Override
-        public void mouseClicked(MouseEvent e) {
+        public void mousePressed(MouseEvent e) {
             CardPanel source = (CardPanel) e.getSource();
             int index = cardPanels.indexOf(source);
-            System.out.println(index);
+
+            if (game.canPlayCard(index)) {
+                game.playCard(index);
+                updateAll();
+            }
         }
 
         @Override
-        public void mousePressed(MouseEvent e) {
+        public void mouseClicked(MouseEvent e) {
 
         }
 
