@@ -226,7 +226,7 @@ public class GameScreen extends JPanel {
     private class PlayListener implements MouseListener {
 
         // Modifies: this, game
-        // Effects: play the card clicked on
+        // Effects: play the card clicked on, check for wins
         @Override
         public void mousePressed(MouseEvent e) {
             CardPanel source = (CardPanel) e.getSource();
@@ -235,6 +235,11 @@ public class GameScreen extends JPanel {
             if (game.canPlayCard(index)) {
                 game.playCard(index);
                 updateAll();
+            }
+
+            if (game.isOver()) {
+                int winner = game.getCurrentPlayer().getId();
+                JOptionPane.showMessageDialog(mainFrame, "Player " + winner + " wins!");
             }
         }
 
