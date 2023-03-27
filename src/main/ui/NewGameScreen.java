@@ -80,7 +80,9 @@ public class NewGameScreen extends JPanel {
         return new Game(numPlayers, numCards);
     }
 
+    // Listener for start button
     private class StartAction implements ActionListener {
+        // Modifies: mainUI
         // Effects: give the main UI a new game to start
         @Override
         public void actionPerformed(ActionEvent e) {

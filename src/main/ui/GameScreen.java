@@ -17,7 +17,6 @@ import java.util.List;
 // The main game screen
 public class GameScreen extends JPanel {
     private static final ImageIcon CARD_BACK_IMAGE = new ImageIcon("./images/uno_card_back.png");
-
     public static final int DECK_DISCARD_SPACING = 20;
 
     private final Game game;
@@ -70,6 +69,7 @@ public class GameScreen extends JPanel {
         mainFrame.setJMenuBar(menuBar);
     }
 
+    // Modifies: this
     // Effects: creates the panel that stores the turn label
     private JPanel createTurnPanel() {
         JPanel turnPanel = new JPanel();
@@ -84,12 +84,14 @@ public class GameScreen extends JPanel {
         return turnPanel;
     }
 
+    // Modifies: this
     // Effects: sets the turnLabel to the current player
     private void updateTurnLabel() {
         String currentPlayer = String.valueOf(game.getCurrentPlayer().getId());
         turnLabel.setText("Player " + currentPlayer + "'s turn");
     }
 
+    // Modifies: this
     // Effects: creates the panel with the draw deck and discard pile
     private JPanel createDeckPanel() {
         JPanel deckPanel = new JPanel();
@@ -106,12 +108,14 @@ public class GameScreen extends JPanel {
         return deckPanel;
     }
 
+    // Modifies: this
     // Effects: set the discard panel to the current discard
     private void updateDiscardPanel() {
         discardPanel.setCard(game.getDiscard());
         discardPanel.revalidate();
     }
 
+    // Modifies: this
     // Effects: creates the panel to display the cards in the current player's hand
     private JScrollPane createCardsPane() {
         JPanel cardsPanel = new JPanel();
@@ -135,12 +139,15 @@ public class GameScreen extends JPanel {
         return cardsPane;
     }
 
+    // Modifies: this
+    // Effects: refreshes the cards pane with a new one created for the current player
     private void updateCardsPane() {
         remove(cardsPane);
         cardsPane = createCardsPane();
         add(cardsPane);
     }
 
+    // Modifies: mainFrame
     // Effects: load the game from file and reset the view
     private void loadGame() {
         mainFrame.loadGame();
@@ -157,6 +164,7 @@ public class GameScreen extends JPanel {
         }
     }
 
+    // Modifies: this
     // Effects: updates every element of the game screen
     private void updateAll() {
         updateTurnLabel();
@@ -168,6 +176,7 @@ public class GameScreen extends JPanel {
 
     // Listener for menu items
     private class MenuListener implements ActionListener {
+        // Modifies: this, mainFrame
         // Effects: save, load or reset the game according to menu item
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -184,6 +193,7 @@ public class GameScreen extends JPanel {
 
     // Listener for deck
     private class DrawListener implements MouseListener {
+        // Modifies: this, game
         // Effects: draws a card for the current player
         @Override
         public void mousePressed(MouseEvent e) {
@@ -212,8 +222,10 @@ public class GameScreen extends JPanel {
         }
     }
 
+    // Listener for cards in hand
     private class PlayListener implements MouseListener {
 
+        // Modifies: this, game
         // Effects: play the card clicked on
         @Override
         public void mousePressed(MouseEvent e) {

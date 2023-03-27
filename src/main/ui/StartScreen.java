@@ -38,7 +38,9 @@ public class StartScreen extends JPanel {
         return buttonPanel;
     }
 
+    // Listener for start button
     private class StartGameAction implements ActionListener {
+        // Modifies: mainUI
         // Effects: tell the main UI to start the game
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -46,7 +48,9 @@ public class StartScreen extends JPanel {
         }
     }
 
+    // Listener for load button
     private class LoadGameAction implements ActionListener {
+        // Modifies: mainUI
         // Effects: tell the main UI to load tne existing game
         @Override
         public void actionPerformed(ActionEvent e) {

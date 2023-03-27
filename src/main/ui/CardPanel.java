@@ -23,6 +23,7 @@ public class CardPanel extends JPanel {
         setCard(card);
     }
 
+    // Modifies: this
     // Effects: change the CardPanel to the current card
     public void setCard(Card card) {
         if (card == null) {
@@ -32,7 +33,7 @@ public class CardPanel extends JPanel {
         }
     }
 
-    // Effects: return the preferred size of the CardPanel
+    // Effects: return the constant preferred size of the CardPanel
     @Override
     public Dimension getPreferredSize() {
         return CARD_SIZE;

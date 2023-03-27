@@ -28,6 +28,7 @@ public class UnoUI extends JFrame {
         centerOnScreen();
     }
 
+    // Modifies: this
     // Effects: centers the main application window in the desktop
     // from AlarmSystem project
     private void centerOnScreen() {
@@ -36,16 +37,19 @@ public class UnoUI extends JFrame {
         setLocation((width - getWidth()) / 2, (height - getHeight()) / 2);
     }
 
+    // Modifies: this
     // Effects: remove the start screen and put up the new game screen
     public void newGame() {
         setScreen(new NewGameScreen(this));
     }
 
+    // Modifies: this
     // Effects: transition to the main game screen with the given game
     public void startGame(Game game) {
         setScreen(new GameScreen(game, this));
     }
 
+    // Modifies: this
     // Effects: load the game screen with the game from file,
     //          or do nothing if game is invalid
     public void loadGame() {
@@ -62,6 +66,7 @@ public class UnoUI extends JFrame {
         }
     }
 
+    // Modifies: this
     // Effects: removes the current screen and changes it to the given one
     private void setScreen(JPanel screen) {
         getContentPane().removeAll();
@@ -69,6 +74,7 @@ public class UnoUI extends JFrame {
         revalidate();
     }
 
+    // Modifies: this
     // Effects: resets back to the start screen
     public void restart() {
         setJMenuBar(null);
