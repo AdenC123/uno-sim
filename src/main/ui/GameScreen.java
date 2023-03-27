@@ -17,7 +17,8 @@ import java.util.List;
 // The main game screen
 public class GameScreen extends JPanel {
     private static final ImageIcon CARD_BACK_IMAGE = new ImageIcon("./images/uno_card_back.png");
-    public static final int DECK_DISCARD_SPACING = 20;
+    public static final int DECK_DISCARD_SPACING = 30;
+    public static final boolean SHOW_BORDERS = false;
 
     private final Game game;
     private final UnoUI mainFrame;
@@ -40,11 +41,11 @@ public class GameScreen extends JPanel {
         addMenuBar();
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        add(Box.createVerticalStrut(10));
+        add(Box.createVerticalStrut(15));
         add(createTurnPanel());
-        add(Box.createVerticalStrut(10));
+        add(Box.createVerticalStrut(40));
         add(createDeckPanel());
-        add(Box.createVerticalStrut(50));
+        add(Box.createVerticalStrut(15));
         add(createCardsPane());
     }
 
@@ -73,14 +74,16 @@ public class GameScreen extends JPanel {
     // Effects: creates the panel that stores the turn label
     private JPanel createTurnPanel() {
         JPanel turnPanel = new JPanel();
-
         turnLabel = new JLabel();
-        turnLabel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
         updateTurnLabel();
-
         turnPanel.setLayout(new BoxLayout(turnPanel, BoxLayout.X_AXIS));
         turnPanel.add(turnLabel);
-        turnPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
+
+        if (SHOW_BORDERS) {
+            turnPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
+            turnLabel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+        }
+
         return turnPanel;
     }
 
@@ -96,7 +99,6 @@ public class GameScreen extends JPanel {
     private JPanel createDeckPanel() {
         JPanel deckPanel = new JPanel();
         deckPanel.setLayout(new FlowLayout(FlowLayout.CENTER, DECK_DISCARD_SPACING, 0));
-        deckPanel.setBorder(BorderFactory.createLineBorder(Color.CYAN));
 
         JLabel deckLabel = new JLabel(CARD_BACK_IMAGE);
         deckLabel.addMouseListener(new DrawListener());
@@ -105,6 +107,11 @@ public class GameScreen extends JPanel {
 
         deckPanel.add(deckLabel);
         deckPanel.add(discardPanel);
+
+        if (SHOW_BORDERS) {
+            deckPanel.setBorder(BorderFactory.createLineBorder(Color.CYAN));
+        }
+
         return deckPanel;
     }
 
@@ -119,12 +126,10 @@ public class GameScreen extends JPanel {
     // Effects: creates the panel to display the cards in the current player's hand
     private JScrollPane createCardsPane() {
         JPanel cardsPanel = new JPanel();
-        cardsPanel.setBorder(BorderFactory.createLineBorder(Color.pink));
 
         cardsPane = new JScrollPane(cardsPanel);
         cardsPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         cardsPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-        cardsPane.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 
         Player currentPlayer = game.getCurrentPlayer();
         cardPanels = new ArrayList<>();
@@ -136,6 +141,12 @@ public class GameScreen extends JPanel {
             cardPanels.add(cardPanel);
             cardsPanel.add(cardPanel);
         }
+
+        if (SHOW_BORDERS) {
+            cardsPane.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+            cardsPanel.setBorder(BorderFactory.createLineBorder(Color.pink));
+        }
+
         return cardsPane;
     }
 
