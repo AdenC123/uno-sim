@@ -2,6 +2,7 @@ package ui;
 
 import model.Game;
 import model.Player;
+import model.cards.Card;
 import persistence.JsonWriter;
 
 import javax.swing.*;
@@ -19,6 +20,8 @@ public class GameScreen extends JPanel {
     private static final ImageIcon CARD_BACK_IMAGE = new ImageIcon("./images/uno_card_back.png");
     public static final int DECK_DISCARD_SPACING = 30;
     public static final boolean SHOW_BORDERS = false;
+    public static final Dimension COLOR_DIALOG_SIZE = new Dimension(500, 100);
+    public static final model.cards.Color DEFAULT_COLOR = model.cards.Color.BLUE;
 
     private final Game game;
     private final UnoUI mainFrame;
@@ -33,12 +36,19 @@ public class GameScreen extends JPanel {
     private List<CardPanel> cardPanels;
     private JScrollPane cardsPane;
 
+    private JDialog colorDialog;
+    private JButton blueButton;
+    private JButton greenButton;
+    private JButton redButton;
+    private JButton yellowButton;
+
     // Effects: constructs the game screen to display the given game
     public GameScreen(Game game, UnoUI mainFrame) {
         this.game = game;
         this.mainFrame = mainFrame;
 
         addMenuBar();
+        createColorDialog();
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(Box.createVerticalStrut(15));
@@ -47,6 +57,37 @@ public class GameScreen extends JPanel {
         add(createDeckPanel());
         add(Box.createVerticalStrut(15));
         add(createCardsPane());
+    }
+
+    // Modifies: this
+    // Effects: sets up the color dialog box for wild cards
+    private void createColorDialog() {
+        colorDialog = new JDialog(mainFrame, "Choose Color", true);
+        colorDialog.setLayout(new FlowLayout());
+        colorDialog.setSize(COLOR_DIALOG_SIZE);
+        centerColorDialog();
+
+        ColorListener colorListener = new ColorListener();
+        blueButton = new JButton("Blue");
+        redButton = new JButton("Red");
+        yellowButton = new JButton("Yellow");
+        greenButton = new JButton("Green");
+        blueButton.addActionListener(colorListener);
+        redButton.addActionListener(colorListener);
+        yellowButton.addActionListener(colorListener);
+        greenButton.addActionListener(colorListener);
+        colorDialog.add(blueButton);
+        colorDialog.add(redButton);
+        colorDialog.add(yellowButton);
+        colorDialog.add(greenButton);
+    }
+
+    // Modifies: this
+    // Effects: centers the color dialog window in the desktop
+    private void centerColorDialog() {
+        int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+        int height = Toolkit.getDefaultToolkit().getScreenSize().height;
+        colorDialog.setLocation((width - mainFrame.getWidth()) / 2, (height - mainFrame.getHeight()) / 2);
     }
 
     // Modifies: this, mainFrame
@@ -244,7 +285,13 @@ public class GameScreen extends JPanel {
             int index = cardPanels.indexOf(source);
 
             if (game.canPlayCard(index)) {
-                game.playCard(index);
+                if (game.isWild(index)) {
+                    game.playCard(index);
+                    centerColorDialog();
+                    colorDialog.setVisible(true);
+                } else {
+                    game.playCard(index);
+                }
                 updateAll();
             }
 
@@ -272,6 +319,29 @@ public class GameScreen extends JPanel {
         @Override
         public void mouseExited(MouseEvent e) {
 
+        }
+    }
+
+    // Listener for choices in the color dialog
+    private class ColorListener implements ActionListener {
+
+        // Set the color of the discard wild card to the current color
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Object source = e.getSource();
+            Card discard = game.getDiscard();
+            if (source == blueButton) {
+                discard.setColor(model.cards.Color.BLUE);
+            } else if (source == yellowButton) {
+                discard.setColor(model.cards.Color.YELLOW);
+            } else if (source == redButton) {
+                discard.setColor(model.cards.Color.RED);
+            } else if (source == greenButton) {
+                discard.setColor(model.cards.Color.GREEN);
+            } else {
+                discard.setColor(DEFAULT_COLOR);
+            }
+            colorDialog.setVisible(false);
         }
     }
 }
