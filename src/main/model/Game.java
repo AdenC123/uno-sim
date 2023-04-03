@@ -2,6 +2,8 @@ package model;
 
 import model.cards.Card;
 import model.cards.Color;
+import model.log.Event;
+import model.log.EventLog;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
@@ -15,11 +17,17 @@ public class Game implements Writable {
     Card discard;
     int currentPlayer; // this is an ID (starting at 1), not a array index
     boolean reversed;
+    EventLog eventLog;
 
     // Requires: numPlayers > 1, numStartingCards > 0
     // Effects: Constructs a game with number of players, deals them all numStartingCards cards,
     //          and sets the current player to player 1
     public Game(int numPlayers, int numStartingCards) {
+        eventLog = EventLog.getInstance();
+        String logString = String.format("Starting new game with %d players and %d starting cards...",
+                numPlayers, numStartingCards);
+        eventLog.logEvent(new Event(logString));
+
         players = new ArrayList<>();
         discard = null;
         currentPlayer = 1;
@@ -30,16 +38,20 @@ public class Game implements Writable {
             p.drawCards(numStartingCards);
             players.add(p);
         }
+
+        eventLog.logEvent(new Event("Starting game!\n"));
     }
 
     // Requires: players is not empty, currentPlayer's ID is in players
-    // Effects: Constructs a game in progess, with a list of players, discard card, current player, and
+    // Effects: Constructs a game in progress, with a list of players, discard card, current player, and
     //          whether the turn order is reversed
     public Game(List<Player> players, Card discard, int currentPlayer, boolean reversed) {
+        eventLog = EventLog.getInstance();
         this.players = players;
         this.discard = discard;
         this.currentPlayer = currentPlayer;
         this.reversed = reversed;
+        eventLog.logEvent(new Event("Loading game from file"));
     }
 
     // Effects: returns the card on top of the discard pile
@@ -126,6 +138,9 @@ public class Game implements Writable {
         Card card = getCurrentPlayer().removeCard(index);
         discard = card;
 
+        String log = "Player " + getCurrentPlayer().getId() + " played a " + card;
+        eventLog.logEvent(new Event(log));
+
         doPower(card);
 
         if (!isOver()) {
@@ -141,6 +156,9 @@ public class Game implements Writable {
         Card card = getCurrentPlayer().removeCard(index);
         card.setColor(color);
         discard = card;
+
+        String log = "Player " + getCurrentPlayer().getId() + " played a " + card;
+        eventLog.logEvent(new Event(log));
 
         doPower(card);
         passTurn();

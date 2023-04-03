@@ -1,10 +1,14 @@
 package ui;
 
 import model.Game;
+import model.log.Event;
+import model.log.EventLog;
 import persistence.JsonLoader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.IOException;
 
 // The main UI class, which handles the main frame and transitions between screens
@@ -26,6 +30,7 @@ public class UnoUI extends JFrame {
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         centerOnScreen();
+        addWindowListener(new CloseListener());
     }
 
     // Modifies: this
@@ -79,5 +84,48 @@ public class UnoUI extends JFrame {
     public void restart() {
         setJMenuBar(null);
         setScreen(new StartScreen(this));
+    }
+
+    // Watch for window closing to log the events
+    private static class CloseListener implements WindowListener {
+
+        // Effects: log all events to console
+        @Override
+        public void windowClosing(WindowEvent e) {
+            EventLog eventLog = EventLog.getInstance();
+            for (Event event : eventLog) {
+                System.out.println(event);
+            }
+        }
+
+        @Override
+        public void windowOpened(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowClosed(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowIconified(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowDeiconified(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowActivated(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowDeactivated(WindowEvent e) {
+
+        }
     }
 }

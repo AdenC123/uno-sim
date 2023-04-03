@@ -1,6 +1,8 @@
 package model;
 
 import model.cards.*;
+import model.log.Event;
+import model.log.EventLog;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
@@ -12,6 +14,7 @@ import java.util.List;
 public class Player implements Writable {
     private final int id;
     private final List<Card> hand;
+    private final EventLog eventLog;
 
     // TODO: deck stuff should probably be in Game or its own class
     private static final double POWER_CHANCE = 0.3;
@@ -21,6 +24,7 @@ public class Player implements Writable {
     public Player(int id) {
         this.id = id;
         this.hand = new ArrayList<>();
+        eventLog = EventLog.getInstance();
     }
 
     // Requires: id > 0
@@ -28,6 +32,7 @@ public class Player implements Writable {
     public Player(int id, List<Card> hand) {
         this.id = id;
         this.hand = hand;
+        eventLog = EventLog.getInstance();
     }
 
     public int getId() {
@@ -82,6 +87,7 @@ public class Player implements Writable {
     // Effects: adds the given card to the player's hand
     public void drawGivenCard(Card card) {
         hand.add(card);
+        eventLog.logEvent(new Event("Player " + id + " drew a " + card));
     }
 
     // Requires: 0 <= index < handSize()
