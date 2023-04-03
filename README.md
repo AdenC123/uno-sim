@@ -35,3 +35,32 @@ and any number of cards to add to their hands.
 - You can generate the second action by clicking on the deck to draw a card, or clicking on a valid card to play it.
 - You can save the state of the application using the menu in the top left of the game screen.
 - You can load the state of the application using the menu or the "Load Game" button on the first screen.
+
+## Phase 4: Task 2
+Mon Apr 03 15:22:37 PDT 2023 \
+Starting new game with 3 players and 2 starting cards... \
+Mon Apr 03 15:22:37 PDT 2023 \
+Player 1 drew a Red Reverse \
+Mon Apr 03 15:22:37 PDT 2023 \
+Player 1 drew a Red 8 \
+Mon Apr 03 15:22:37 PDT 2023 \
+Player 2 drew a Yellow 5 \
+Mon Apr 03 15:22:37 PDT 2023 \
+Player 2 drew a Blue 7 \
+Mon Apr 03 15:22:37 PDT 2023 \
+Player 3 drew a Blue 2 \
+Mon Apr 03 15:22:37 PDT 2023 \
+Player 3 drew a Green 2 \
+Mon Apr 03 15:22:37 PDT 2023 \
+Starting game! \
+\
+Mon Apr 03 15:22:39 PDT 2023 \
+Player 1 played a Red 8 \
+Mon Apr 03 15:22:40 PDT 2023 \
+Player 2 drew a Green 6 \
+Mon Apr 03 15:22:41 PDT 2023 \
+Player 3 drew a +4 \
+Mon Apr 03 15:22:42 PDT 2023 \
+Player 1 played a Red Reverse \
+Mon Apr 03 15:22:42 PDT 2023 \
+Player 1 wins!

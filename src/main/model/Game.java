@@ -191,7 +191,11 @@ public class Game implements Writable {
     // Effects: returns true if the current player has won the game, returns false if
     //          the game is not over
     public boolean isOver() {
-        return getCurrentPlayer().handSize() == 0;
+        boolean isOver = getCurrentPlayer().handSize() == 0;
+        if (isOver) {
+            eventLog.logEvent(new Event("Player " + getCurrentPlayer().getId() + " wins!"));
+        }
+        return isOver;
     }
 
     // Requires: canPlayCard(index) is true
