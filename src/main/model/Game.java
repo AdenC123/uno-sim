@@ -42,7 +42,7 @@ public class Game implements Writable {
         eventLog.logEvent(new Event("Starting game!\n"));
     }
 
-    // Requires: players is not empty, currentPlayer's ID is in players
+    // Requires: players has at least 2 elements, currentPlayer's ID is in players
     // Effects: Constructs a game in progress, with a list of players, discard card, current player, and
     //          whether the turn order is reversed
     public Game(List<Player> players, Card discard, int currentPlayer, boolean reversed) {

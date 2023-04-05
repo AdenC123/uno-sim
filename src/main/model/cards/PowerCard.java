@@ -4,7 +4,7 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 // A special card that has effects when played
-public class PowerCard implements Card, Writable {
+public class PowerCard implements Card {
     private Color color;
     private final Face power;
 

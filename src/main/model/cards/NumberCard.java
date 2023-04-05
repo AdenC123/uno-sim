@@ -4,7 +4,7 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 // A normal card with a number face
-public class NumberCard implements Card, Writable {
+public class NumberCard implements Card {
     private Color color;
     private final int number;
 
