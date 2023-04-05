@@ -64,3 +64,15 @@ Mon Apr 03 15:22:42 PDT 2023 \
 Player 1 played a Red Reverse \
 Mon Apr 03 15:22:42 PDT 2023 \
 Player 1 wins!
+
+## Phase 4: Task 3
+Overall, I am happy with my design. I was able to get a single point of entry from the UI
+package into the model package through the Game class, which is a good example of low coupling.
+I was also able to use the Card interface for the fields in Game and Player, another example of low coupling.
+However, my cohesion is not the best, especially in the Player class. Currently, all of the code to generate new 
+random cards is within the Player class, which is not really something that Player should be responsible for.
+To refactor this, I would create a new Deck class which handles card generation. This could be a utility class with
+static methods, or a Singleton if I want to keep track of state in the deck in the future (for example, to keep track
+of what cards have been played to more accurately simulate Uno card distribution).
+Then, my methods in Player can call the Deck class's methods to draw new random cards.
+This way, I can easily change card generation later without affecting the Player class at all.
