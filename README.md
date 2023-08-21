@@ -1,3 +1,4 @@
+![Demo image](images/demo.png)
 ## What is this?
 This project is a simulator for the card game Uno.
 Users can start a pass-and-play game with any number of players and any number of starting cards,
